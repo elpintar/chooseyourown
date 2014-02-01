@@ -10,6 +10,7 @@
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
+      <a class="button" id="home" href="/"></a>
       <a class="button" id="prev"></a>
     </div>
 
