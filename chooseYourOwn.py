@@ -29,16 +29,6 @@ from bottle   import route, run, template, post, get, delete, static_file, \
 db = DataBase()
 
 #=============================================
-# Helper Functions
-#=============================================
-
-def comBut(situation, panelID):
-    # Return the button containing described with text, situation,
-    # and links to /read/panelID
-    return ('<a class="choice" href=\"'+ '/read/?panelID=' +
-            str(panelID) + '\">' + situation + '</a>' + '\n')
-
-#=============================================
 # Home /
 #=============================================
 
