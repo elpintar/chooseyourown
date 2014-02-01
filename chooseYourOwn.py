@@ -6,7 +6,7 @@ from bottle import route, run, template
 
 @route("/")
 def hello_world():
-        return "Hello World!"
+    return "Hello World!"
 
 @route("/edit/<panel>")
 def display_edit(panel):
