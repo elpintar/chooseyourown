@@ -19,10 +19,16 @@ class DataBase(object):
         self.firstPanelIDField = "startingPanelID"
 
         # load settings
-        settings = {}
-        execfile("dataBaseSettings.conf", settings)
+        if 'DATABASE_URI' in os.environ:
+            # heroku
+            uri = DATABASE_URI
+        else:
+            # development
+            settings = {}
+            execfile("dataBaseSettings.conf", settings)
+            uri = settings["URI"]
         
-        client = MongoClient( settings["URI"] )
+        client = MongoClient( uri )
         
         # collections
         db = client[dbName]
