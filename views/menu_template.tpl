@@ -22,7 +22,8 @@
       <div id="create-area">
         <form>
           <hr>
-          <input id="situation-entry" type="text" name="new-situation" size="30">
+          <input id="situation-entry" type="text" name="new-situation" 
+           size="30" maxlength="20">
           <hr>
         </form>
         <div id="situation-create" class="button" onclick="newComic()">Create</div>
