@@ -408,12 +408,16 @@ $imgFolder: "../img/";
 }
 
 #black {background-color: black;}
-#white {background-color: white;}
 #red {background-color: red;}
 #yellow {background-color: yellow;}
 #green {background-color: lime;}
 #blue {background-color: blue;}
 #brown {background-color: brown;}
+#white {
+  @include spriteIcon("eraser.png", $button-width, $button-width);
+  background-color: white;
+  background-size: 80%;
+}
 
 #tiny {@include spriteIcon("size1.png", $button-width, $button-width);}
 #little {@include spriteIcon("size2.png", $button-width, $button-width);}

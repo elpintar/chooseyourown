@@ -279,9 +279,6 @@ canvas:active {
 #black {
   background-color: black; }
 
-#white {
-  background-color: white; }
-
 #red {
   background-color: red; }
 
@@ -296,6 +293,16 @@ canvas:active {
 
 #brown {
   background-color: brown; }
+
+#white {
+  background-image: url("../img/eraser.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-color: white;
+  background-size: 80%; }
 
 #tiny {
   background-image: url("../img/size1.png");
