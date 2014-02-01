@@ -54,7 +54,6 @@ def displayMenu():
 
 @post("/")
 def createComic():
-    # TODO
     situation = request.params['situation']
     id = db.newComic(situation)
     response.headers['Context-Type'] = 'text/plain'
@@ -62,9 +61,8 @@ def createComic():
 
 @delete("/")
 def deleteComic():
-    # TODO make safer
     comID = request.params['comID']
-    return db.deleteComic(comID)
+    db.deleteComic(comID)
 
 #=============================================
 # Edit /edit
@@ -88,7 +86,7 @@ def postEdit(comic):
     else:
         newID = db.newFirstPanel(comID, whatsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
-    return newID
+    return str(newID)
 
 #=============================================
 # Read /read
