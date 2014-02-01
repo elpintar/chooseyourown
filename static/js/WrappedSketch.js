@@ -53,7 +53,7 @@ WrappedSketch.prototype.sendPanelData = function() {
 
     // Require description to be non-empty.
     if (!whatIsHappening) {
-        alert("Entery a description!");
+        alert("Enter a description/choice below!");
         return;
     }
 

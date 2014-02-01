@@ -1,9 +1,10 @@
 <!doctype html>
 
 <head>
-  <title>Navigate Your Own...</title>
-  <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
+  <title>Choose Your Own...</title>
+  <link rel="shortcut icon" href="/static/img/chooseyourown.ico" />
+  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -18,7 +19,7 @@
 
     <div id="panel-view">
     <img src="{{img}}"/>
-    <!-- {{whatIsHappening}} -->
+    {{whatIsHappening}}
     </div>
 
     <div id="right-sidebar" class="sidebar">

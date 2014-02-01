@@ -2,6 +2,7 @@
 
 <head>
   <title>Choose Your Own...</title>
+  <link rel="shortcut icon" href="/static/img/chooseyourown.ico" />
   <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
   <script src="../static/js/jquery-2.0.2.min.js"></script>
@@ -23,7 +24,7 @@
         <form>
           <hr>
           <input id="situation-entry" type="text" name="new-situation" 
-           size="30" maxlength="20">
+           size="25" maxlength="40">
           <hr>
         </form>
         <div id="situation-create" class="button" onclick="newComic()">Create</div>

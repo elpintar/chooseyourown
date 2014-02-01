@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Edit Your Own...</title>
+  <link rel="shortcut icon" href="/static/img/chooseyourown.ico" />
   <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
   <script src="../static/js/jquery-2.0.2.min.js"></script>
@@ -25,7 +26,7 @@
 
     <div id="panel-view">
       <canvas id="panel-canvas" width="480" height="360"> </canvas>
-      <input id="panel-desc" type="text" maxlength="20" 
+      <input id="panel-desc" type="text" maxlength="40" size="40"
        placeholder="Description">
     </div>
 
@@ -33,8 +34,8 @@
       <a class="size button" id="tiny" href="#panel-canvas" data-size="1"></a>
       <a class="size button" id="little" href="#panel-canvas" data-size="3"></a>
       <a class="size button selected" id="med" href="#panel-canvas" data-size="5"></a>
-      <a class="size button" id="big" href="#panel-canvas" data-size="10"></a>
-      <a class="size button" id="huge" href="#panel-canvas" data-size="15"></a>
+      <a class="size button" id="big" href="#panel-canvas" data-size="15"></a>
+      <a class="size button" id="huge" href="#panel-canvas" data-size="50"></a>
       <a class="button" id="cancel" onclick="ws.cancel()"></a> <!-- TODO: is this the right syntax? also, this is sort of redundant with sending prevId in the URL -->
       <a class="button" id="submit" onclick="ws.sendPanelData()"></a>
     </div>
