@@ -21,7 +21,7 @@ class DataBase(object):
         # load settings
         if 'DATABASE_URI' in os.environ:
             # heroku
-            uri = DATABASE_URI
+            uri = os.environ['DATABASE_URI']
         else:
             # development
             settings = {}
