@@ -7,10 +7,21 @@ from bottle import route, run, template
 
 print MONGOHQ_URL
 
+def comBut(situation, panelID):
+	# Return the button containing described with text, situation,
+	# and links to /read/panelID
+	return '<a href=\"/read/' + panelID + '\">' + situation + '</a>'
+
 @route("/")
 def hello_world():
-	# The menue page, displays the list of comics
-	return template("Hello World!")
+	# The menu page, displays the list of comics
+	comics = db.getAllComics()
+	comList = ''
+	for cm in comics:
+		comList = strng + comBut(cm['situation'],
+					 cm['startingPanelID'])
+		comList = strgn + '\n'
+	return template('menu.html', comicList = comList
 
 @route("/edit/<panel>")
 def display_edit(panel):
