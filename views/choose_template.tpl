@@ -30,7 +30,7 @@
           Continue?
         </a>
         % else:
-        <a class="choice" href="/edit?prevID-{{panelID}}">
+        <a class="choice" href="/edit?prevID={{panelID}}">
           Or something else...
         </a>
         % end
