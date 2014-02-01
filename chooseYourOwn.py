@@ -1,14 +1,13 @@
 # Erik Pintar, Connor Brem, Spencer Barton, Billy Wood
 # TartanHacks  2014
 
-from bottle import route, run, template
+import os
+from bottle import route, run
 
-@route('/')
-def home():
-    return template('<b>Welocome</b>!')
+@route("/")
+def hello_world():
+        return "Hello World!"
 
-@route('/hello/<name>')
-def index(name):
-    return template('<b>Hello {{name}}</b>!', name=name)
+run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
-run(host='localhost', port=8080)
+# run(host='localhost', port=8080)
