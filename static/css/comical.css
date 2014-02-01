@@ -383,3 +383,9 @@ canvas:active {
 
 .selected {
   box-shadow: 0px 0px 9px 4px gray; }
+
+#start-wrapper .choice {
+  text-decoration: none;
+  color: #222222;
+  height: auto;
+  padding: .3em; }
