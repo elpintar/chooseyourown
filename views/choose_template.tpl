@@ -10,7 +10,8 @@
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
-      <a class="button" id="prev"></a>
+      <a class="button" id="home" href="/"></a>
+      <a class="button" id="prev" href="/read?panelID={{panelID}}"></a>
     </div>
 
     <div id="panel-view">
