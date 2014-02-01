@@ -54,6 +54,8 @@ def display_next(panel):
 			desc0=desc[0], desc1=desc[1], desc2[2])
 			
 
+# What follows is copied from the Internet.
+# Thank you Internet.
 @get('/<filename:re:.*\.js>')
 def javascripts(filename)
 	return static_file(filename, root='static/js')
