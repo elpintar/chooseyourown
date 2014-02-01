@@ -17,10 +17,10 @@ ERROR missing query - redirect home
 
 import os
 import random
-from urllib import quote
+from urllib   import quote
 from DataBase import DataBase
-from bottle import route, run, template, post, get, delete, static_file, \
-                   request, response
+from bottle   import route, run, template, post, get, delete, static_file, \
+                     request, response
 
 #=============================================
 # Globals
@@ -36,7 +36,7 @@ def comBut(situation, panelID):
     # Return the button containing described with text, situation,
     # and links to /read/panelID
     return ('<a class="choice" href=\"'+ '/read/?panelID=' +
-        str(panelID) + '\">' + situation + '</a>' + '\n')
+            str(panelID) + '\">' + situation + '</a>' + '\n')
 
 #=============================================
 # Home /
@@ -97,18 +97,22 @@ def postEdit(comic):
 @route("/read")
 def displayPanel(comic):
     # Returns the display screen for the given panel
-    panel = request.query.panelID
-    pan = db.getPanelByID(panel)
-    img = pan['img']
-    par = pan['prevID']
-    children = pan['nextIDs']
-    if len(children) == 0:
-        nextLink = '/edit?prevID=' + panel
-    elif len(children) == 1:
-        nextLink = '/read?panelID=' + children[0]
+    try:
+        panel = request.query.panelID
+    except:
+        return displayMenu()
     else:
-        nextLink = '/choose?prevID=' + panel
-    return template('read_template', nextLink=nextLink, parent=par, img=img)
+        pan = db.getPanelByID(panel)
+        img = pan['img']
+        par = pan['prevID']
+        children = pan['nextIDs']
+        if len(children) == 0:
+            nextLink = '/edit?prevID=' + panel
+        elif len(children) == 1:
+            nextLink = '/read?panelID=' + children[0]
+        else:
+            nextLink = '/choose?prevID=' + panel
+        return template('read_template', nextLink=nextLink, parent=par, img=img)
 
 #=============================================
 # Choose next panel /choose
@@ -117,31 +121,32 @@ def displayPanel(comic):
 @route("/choose")
 def displayNext(comic):
     # Returns the next-panel decision screen
-    panelID = request.query.panelID
-    pan = db.getPanel(panel)
-    par = pan['prevID']
-    all_children = pan['nextIDs']
-    child = [db.getPanel(ch_id) for ch_id in child_ids]
-    comicID = ''
-    comList = ''
-    newComicButton = ('<a class="choice" href=\"' +
-              '/edit?prevID=' + panelID + 
-              '&comicID' + comicID + '\">')
-    for ch in child:
-        comList = comList + comBut(ch['situation'],
-                     ch['startingPanelID'])
-    if len(child) == 0:
-        questionText = 'The End'
-        newComicButton += 'Continue?'
+    try:
+        panelID = request.query.panelID
+    except:
+        return displayMenu()
     else:
-        questionText = 'What happens next?'
-        newComicButton += 'Or something else...'
-    newComicButton += '</a>'
-    
-    return template('choose_template', panel=panelID, parent=par,
-            comicList=comList, questText=questionText,
-            newComicText=newComicText)
-            
+        pan = db.getPanel(panelID)
+        par = pan['prevID']
+        all_children = pan['nextIDs']
+        child = [db.getPanel(ch_id) for ch_id in child_ids]
+        comicID = ''
+        comList = ''
+        newComicButton = ('<a class="choice" href=\"' +
+                         '/edit?prevID=' + panelID + 
+                         '&comicID' + comicID + '\">')
+        for ch in child:
+            comList = comList + comBut(ch['situation'], ch['startingPanelID'])
+        if len(child) == 0:
+            questionText = 'The End'
+            newComicButton += 'Continue?'
+        else:
+            questionText = 'What happens next?'
+            newComicButton += 'Or something else...'
+        newComicButton += '</a>'
+        return template('choose_template', panel=panelID, parent=par,
+                        comicList=comList, questText=questionText,
+                        newComicText=newComicText)
 
 #=============================================
 # Static files
