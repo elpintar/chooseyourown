@@ -107,7 +107,8 @@ body div {
   background-color: red;
   width: $view-width;
   height: $view-height;
-  margin: $vertical-centering-margin 0;
+  margin-top: $vertical-centering-margin;
+  margin-bottom: 4*$vertical-centering-margin;
   box-shadow: 0px 0px 25px black;
 }
 
@@ -416,8 +417,18 @@ $imgFolder: "../img/";
   background-size: 80%;
 }
 
-
-
+#prev {
+  @include spriteIcon("back.png", $button-width, $button-width);
+  background-size: 80%;
+}
+#next {
+  @include spriteIcon("next.png", $button-width, $button-width);
+  background-size: 80%;
+}
+#new {
+  @include spriteIcon("fork_blue.png", $button-width, $button-width);
+  background-size: 90%;
+}
 
 
 

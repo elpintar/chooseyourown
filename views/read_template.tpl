@@ -10,11 +10,11 @@
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
-      <a class="button" id="prev" href="/read/{{parent}}"></a>
+      <a class="button" id="prev" href="{{prevLink}}"></a>
     </div>
 
     <div id="panel-view">
-
+    <img src="{{img}}"/>
     </div>
 
     <div id="right-sidebar" class="sidebar">

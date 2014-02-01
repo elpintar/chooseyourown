@@ -2,8 +2,10 @@
 
 <head>
   <title>Choose Your Own...</title>
-  <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/jquery-2.0.2.min.js"></script>
+  <script src="/static/js/mainMenu.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
           <input id="situation-entry" type="text" name="new-situation" size="30">
           <hr>
         </form>
-        <div id="situation-create" class="button">Create</div>
+        <div id="situation-create" class="button" onclick="newComic()">Create</div>
       </div>
       
       <div id="start-wrapper">

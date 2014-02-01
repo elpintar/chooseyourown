@@ -32,7 +32,8 @@ body div {
   background-color: red;
   width: 600px;
   height: 400px;
-  margin: 100px 0;
+  margin-top: 100px;
+  margin-bottom: 400px;
   box-shadow: 0px 0px 25px black; }
 
 #viewer div {
@@ -349,3 +350,30 @@ canvas:active {
   height: 36px;
   background-size: contain;
   background-size: 80%; }
+
+#prev {
+  background-image: url("../img/back.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-size: 80%; }
+
+#next {
+  background-image: url("../img/next.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-size: 80%; }
+
+#new {
+  background-image: url("../img/fork_blue.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-size: 90%; }
