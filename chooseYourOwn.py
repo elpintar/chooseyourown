@@ -7,8 +7,8 @@ API
 GET     /                           - home
 POST    /                           - create comic
 DELETE  /                           - delete comic
-GET     /edit?prevID="__"&comID=""  - create panel with prevID 
-GET     /edit?prevID=""&comID="__"  - create initial panel for comID
+GET     /edit?prevID="__"&comID=""  - panel with prevID 
+GET     /edit?prevID=""&comID="__"  - initial panel for comID
 POST    /edit                       - create panel in database, redirect read
 GET     /read?panelID="__"          - display panel
 GET     /choose?panelID="__"        - display choose window for given panel
@@ -67,7 +67,7 @@ def deleteComic():
     return db.deleteComic(comID)
 
 #=============================================
-# Edit /<comic>/edit
+# Edit /edit
 #=============================================
 
 @route("/edit")
@@ -91,7 +91,7 @@ def postEdit(comic):
     return newID
 
 #=============================================
-# Read /<comic>/read
+# Read /read
 #=============================================
 
 @route("/read")
@@ -111,13 +111,13 @@ def displayPanel(comic):
     return template('read_template', nextLink=nextLink, parent=par, img=img)
 
 #=============================================
-# Choose next panel /<comic>/choose
+# Choose next panel /choose
 #=============================================
 
 @route("/choose")
 def displayNext(comic):
     # Returns the next-panel decision screen
-    panel = request.query.panelID
+    panelID = request.query.panelID
     pan = db.getPanel(panel)
     par = pan['prevID']
     all_children = pan['nextIDs']
@@ -138,7 +138,7 @@ def displayNext(comic):
         newComicButton += 'Or something else...'
     newComicButton += '</a>'
     
-    return template('choose_template', panel=panel, parent=par,
+    return template('choose_template', panel=panelID, parent=par,
             comicList=comList, questText=questionText,
             newComicText=newComicText)
             
