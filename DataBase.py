@@ -7,7 +7,8 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 
 class DataBase(object):
-	
+	"""DatBase instantuates a conncetion to our dataBase and performs queries"""
+
 	def __init__(self):
 		# Database names
 		dbName = "heroku_app21800319"
@@ -85,5 +86,3 @@ class DataBase(object):
 		self.panelsCollection.update( { self.idField : ObjectId(frameID)}, 
 									  { "$set" : {self.nextIDField : nextIDs} })
 		return True
-
-DataBase()
