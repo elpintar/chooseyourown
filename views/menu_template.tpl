@@ -4,6 +4,7 @@
   <title>Choose Your Own...</title>
   <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/jquery-2.0.2.min.js"></script>
   <script src="/static/js/mainMenu.js"></script>
 </head>
 
