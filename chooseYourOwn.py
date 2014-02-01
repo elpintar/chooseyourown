@@ -46,11 +46,9 @@ def comBut(situation, panelID):
 def displayMenu():
     # The menu page, displays the list of comics
     comics = db.getAllComics()
-    comList = ''
-    for cm in comics:
-        comicName = quote(cm['situation'].replace(' ', '-'))
-        comList += comBut(cm['situation'], cm['startingPanelID'])
-    return template('menu_template', comicList = comList)
+    comicList = [(str(cm['startingPanelID']), cm['situation'])
+                 for cm in comics]
+    return template('menu_template', comicList=comicList)
 
 @post("/")
 def createComic():
@@ -79,12 +77,12 @@ def postEdit():
     # Adds a new panel to the database and returns its ID.
     prevID = request.params.get('prevID')
     comID = request.params.get('comID')
-    whatsHappening = request.params.get('whatsHappening')
+    whatIsHappening = request.params.get('whatIsHappening')
     img = request.params.get('img')
     if prevID != None:
-        newID = db.newPanel(prevID, whatsHappening, img)
+        newID = db.newPanel(prevID, whatIsHappening, img)
     else:
-        newID = db.newFirstPanel(comID, whatsHappening, img)
+        newID = db.newFirstPanel(comID, whatIsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
     return str(newID)
 
@@ -96,21 +94,23 @@ def postEdit():
 def displayPanel():
     # Returns the display screen for the given panel
     try:
-        panel = request.query.panelID
+        panelID = request.query.panelID
     except:
         return displayMenu()
     else:
-        pan = db.getPanelByID(panel)
+        pan = db.getPanelByID(panelID)
         img = pan['img']
         prevID = pan.get('prevID','')
         children = pan['nextIDs']
+        whatIsHappening = pan['whatIsHappening']
         numChildren = len(children)
         if numChildren > 0:
             nextID = str(children[0])
         else:
             nextID = ''
-        return template('read_template', nextID=nextID, prevID=prevID,
-                        numChildren=numChildren, img=img)
+        return template('read_template', panelID=panelID, nextID=nextID, 
+                        prevID=prevID, numChildren=numChildren, img=img,
+                        whatIsHappening=whatIsHappening)
 
 #=============================================
 # Choose next panel /choose
@@ -124,13 +124,12 @@ def displayNext():
     except:
         return displayMenu()
     else:
-        pan = db.getPanel(panelID)
+        pan = db.getPanelByID(panelID)
         par = pan['prevID']
         all_children = pan['nextIDs']
-        child = [(str(ch_id), db.getPanel(ch_id)['whatsHappening']
-                 for ch_id in all_children]
-        return template('choose_template', panelID=panelID, children=children,
-                        questText=questionText, newComicText=newComicText)
+        children = [(str(ch_id), db.getPanelByID(ch_id)['whatIsHappening']) 
+                    for ch_id in all_children]
+        return template('choose_template', panelID=panelID, children=children)
 
 #=============================================
 # Static files

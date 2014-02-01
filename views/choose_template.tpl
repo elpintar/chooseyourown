@@ -20,12 +20,11 @@
         % else:
         <div>What happens next?</div>
         % end
-        <div>Choose Your Own...</div>
       </div>
       <div id="choices-wrapper">
-        % for (chID,text) in children
-        <a class="choice" href="/read/?panelID={{chID}}">{{text}}</a>
-        # end
+        % for (chID,text) in children:
+        <a class="choice" href="/read?panelID={{chID}}">{{text}}</a>
+        % end
         % if len(children) == 0:
         <a class="choice" href="/edit?prevID={{panelID}}">
           Continue Story?
@@ -34,7 +33,7 @@
           Back to Menu
         </a>
         % else:
-        <a class="choice" href="/edit?prevID-{{panelID}}">
+        <a class="choice" href="/edit?prevID={{panelID}}">
           Or something else...
         </a>
         % end
