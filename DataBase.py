@@ -47,8 +47,6 @@ class DataBase(object):
 
     def getAllComics(self):
         """Get all comics and return in list ordered by ID or None on error"""
-        if not ObjectId.is_valid(_id):
-            return None
         cur = self.comicsCollection.find()
         return list(cur.sort(self.idField))
 

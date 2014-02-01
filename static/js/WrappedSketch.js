@@ -46,10 +46,10 @@ WrappedSketch.prototype.cancel = function() {
 
 /* Sends a data URL based on a snapshot of this WrappedSketch to the server. */
 WrappedSketch.prototype.sendPanelData = function() {
-    var url = document.URL;
-    var prevID = url.slice(url.lastIndexOf('/') + 1);
     var img = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
     var whatsHappening = this.$desc[0].value;
+    var prevID = $.url().param("prevID");
+    var comID = $.url().param("comID");
 
     // Require description to be non-empty.
     if (!whatsHappening) {
@@ -59,11 +59,13 @@ WrappedSketch.prototype.sendPanelData = function() {
 
     var data = {
         img: img,
-        whatsHappening: whatsHappening
+        whatsHappening: whatsHappening,
+        prevID: prevID,
+        comID: comID
     };
     $.ajax({
         type: 'POST',
-        url: '/edit/' + prevID,
+        url: '/edit',
         data: data
     }).done(function(panelID) {
         // Redirect to the page which holds the newly created panel.
