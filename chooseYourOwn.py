@@ -12,7 +12,7 @@ def comBut(situation, panelID):
 	# Return the button containing described with text, situation,
 	# and links to /read/panelID
 	return ('<a class="choice" href=\"/read/' + panelID + '\">' + 
-		situation + '</a>')
+		situation + '</a>' + '\n')
 
 @route("/")
 def displayMenu():
@@ -22,15 +22,14 @@ def displayMenu():
 	for cm in comics:
 		comList = strng + comBut(cm['situation'],
 					 cm['startingPanelID'])
-		comList = strgn + '\n'
 	return template('menu_template', comicList = comList)
 
-@route("/edit/<panel>")
+@route("/edit/<comic>/<panel>")
 def displayEdit(panel):
 	# Returns the edit page
 	return template('edit_template', panel=panel)
 
-@post("/edit/<panel>")
+@post("/edit/<comic>/<panel>")
 def display_edit(panel):
 	# Adds a new panel to the database and returns its ID.
 	prevID = request.params['prevID']
@@ -39,24 +38,26 @@ def display_edit(panel):
 	newID = db.newPanel(prevID, whatsHappening, img)
 	return newID # TODO: does return work here? or do we have to do something with response?
 
-@route("/read/<panel>")
-def displayPanel(panel):
+@route("/<comic>/read")
+def displayPanel(comic):
 	# Returns the display screen for the given panel
+	panel = request.query.panelID
 	pan = db.getPanel(panel)
 	img = pan['img']
 	par = pan['prevID']
 	children = pan['nextIDs']
 	if len(children) == 0:
-		nextLink = '/edit/' + panel
+		nextLink = '/' + comic + '/edit/' + panel
 	elif len(children) == 1:
-		nextLink = '/read/' + children[0]
+		nextLink = '/' + comic + '/read/' + children[0]
 	else:
-		nextLink = '/choose/' + panel
+		nextLink = '/' + comic + '/choose/' + panel
 	return template('read_template', nextLink=nextLink, parent=par, img=img)
 
-@route("/choose/<panel>")
+@route("/choose/<comic>/<panel>")
 def displayNext(panel):
 	# Returns the next-panel decision screen
+	panel = request.query.panelID
 	pan = db.getPanel(panel)
 	par = pan['prevID']
 	all_children = pan['nextIDs']
