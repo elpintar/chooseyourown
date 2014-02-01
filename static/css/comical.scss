@@ -10,10 +10,10 @@ $font-shadow: #888;
 $bg: #333; 
 $fg: #ffffff;
 $side: #cdb99c; 
-$color-button: #3399cc;
-$big-button-color: #ff8a05;
-$big-button-border: #cc6521;
-$header-color: lighten(#7f171f,5%);
+$color-button: lighten(rgb(223,146,14),10%);
+$big-button-color: lighten(rgb(223,146,14),30%);
+$big-button-border: darken($big-button-color,10%);
+$header-color: lighten(rgb(52,175,208),10%);//darken(#f2583e,15%);
 
 // $font-color: #333; 
 // $bg: #171717; 
@@ -60,6 +60,19 @@ $button-side-margin: ($sidebar-width - $button-width) / 2;
     background-image: linear-gradient($base, $base 25%, $lighter);
 }
 
+@mixin unhighlightable{
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+    -webkit-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
 @font-face {
     font-family: 'oswaldbook';
     src: url('oswald-regular-webfont.eot');
@@ -77,6 +90,7 @@ body {
   @include gradient($bg);
   width: 100%;
   height: 100%;
+  min-height: 100%;
   font-size: 16px;
   font-family: "Comic Sans MS", "Helvetica", sans-serif;
   text-shadow: 0px 1px $font-shadow;
@@ -258,7 +272,11 @@ h3 {
 form {
   width: 60%;
   margin-left: 15%;
+  margin-top: .5em;
   border-left: 2px #333 solid;
+  display: inline-block;
+  width: 300px;
+  float: left;
 }
 
 #situation-entry{
@@ -267,9 +285,33 @@ form {
   border: none;
   //border-left: 2px gray solid;
   margin: 0px 0px;
+  overflow: hidden;
 
   &:focus {
     outline: 0;
+  }
+}
+
+#situation-create {
+  width: auto;
+  height: auto;
+  padding: .5em 1em;
+  border-radius: 6px;
+  bottom: 5px;
+  position: relative;
+  margin-left: 1em;
+  font-family: "oswaldbook", "Impact", inherit;
+  font-size: 1.3em;
+  border: 4px darken($big-button-color, 10%) solid;
+  &:hover {
+    border: 4px lighten($big-button-color,5%) solid;
+    background-color: darken($big-button-color, 10%);
+  }
+  &:active {
+    @include unhighlightable;
+    position: relative;
+    bottom: 4px;
+    box-shadow: 0px -1px 2px 2px gray;
   }
 }
 
@@ -287,42 +329,102 @@ hr {
 }
 
 #start-wrapper {
-  height: .3*$view-height;
+  height: .456*$view-height;
   width: .9*$view-width;
   margin: .05*$view-height .05*$mid-width;
   overflow-x: hidden;
   overflow-y: scroll;
-  border: $side 1px solid;
+  border: black 1px solid;
   border-bottom: none;
   border-top-left-radius: 14px;
   border-top-right-radius: 14px;
 
   .start {
-    width: $mid-width;
-    padding: .3em 0;
-    margin: 14px 0px;
-    font-size: 2em;
+    width: auto;
+    max-width: $mid-width;
+    padding: .3em .3em;
+    margin: 14px 7px;
+    font-size: 1.4em;
 
     display: inline-block;
     position: relative;
     background: $big-button-color;
-    border-left: 4px solid lighten($big-button-color, 10%);
-    border-top: 4px solid lighten($big-button-color, 10%);
-    border-bottom: 4px solid darken($big-button-color,10%);
-    border-right: 4px solid darken($big-button-color,10%);
+    box-shadow: 0px 1px 5px 2px $big-button-color;
+    // border-left: 4px solid lighten($big-button-color, 10%);
+    // border-top: 4px solid lighten($big-button-color, 10%);
+    // border-bottom: 4px solid darken($big-button-color,10%);
+    // border-right: 4px solid darken($big-button-color,10%);
     border-radius: 8px;
 
     &:hover {
       background: $big-button-border;
-      border-left: 4px solid darken($big-button-color, 20%);
-      border-top: 4px solid darken($big-button-color, 20%);
-      border-bottom: 4px solid lighten($big-button-color,10%);
-      border-right: 4px solid lighten($big-button-color,10%);
+      box-shadow: 0px -1px 5px 2px $big-button-border;
+      // border-left: 4px solid darken($big-button-color, 20%);
+      // border-top: 4px solid darken($big-button-color, 20%);
+      // border-bottom: 4px solid lighten($big-button-color,10%);
+      // border-right: 4px solid lighten($big-button-color,10%);
       cursor: pointer;
       text-shadow: 0px -1px $font-shadow;
     }
   }
 }
+
+.start:active,.choice:active,a.button:active {
+  @include unhighlightable;
+  position: relative;
+  top: 1px;
+  box-shadow: 0px 0px 2px 2px gray;
+}
+
+canvas {
+  &:hover {cursor: crosshair;}
+  &:active {cursor: all-scroll;}
+}
+
+/* icon zone */
+
+$imgFolder: "../img/";
+
+@mixin spriteIcon($imgName, $width, $height, $fill:true){
+    background-image: url($imgFolder + $imgName);
+    background-repeat: no-repeat;
+    background-position: center center;
+    width: $width;
+    height: $height;
+    
+    @if ($fill){
+        background-size: contain;
+    }
+}
+
+#black {background-color: black;}
+#white {background-color: white;}
+#red {background-color: red;}
+#yellow {background-color: yellow;}
+#green {background-color: green;}
+#blue {background-color: blue;}
+#brown {background-color: brown;}
+
+#tiny {@include spriteIcon("size1.png", $button-width, $button-width);}
+#little {@include spriteIcon("size2.png", $button-width, $button-width);}
+#med {@include spriteIcon("size3.png", $button-width, $button-width);}
+#big {@include spriteIcon("size4.png", $button-width, $button-width);}
+#huge {@include spriteIcon("size4point5.png", $button-width, $button-width);}
+#cancel {@include spriteIcon("x_red.png", $button-width, $button-width);}
+#submit {
+  @include spriteIcon("check_green.png", $button-width, $button-width);
+  background-size: 80%;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

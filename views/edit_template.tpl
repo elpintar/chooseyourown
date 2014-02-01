@@ -2,11 +2,11 @@
 <html>
 <head>
   <title>Choose Your Own...</title>
-  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
-  <script src="jquery-2.0.2.min.js"></script>
-  <script src="sketch.js"></script>
-  <script src="WrappedSketch.js"></script>
+  <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
+  <script src="../static/js/jquery-2.0.2.min.js"></script>
+  <script src="../static/js/sketch.js"></script>
+  <script src="../static/js/WrappedSketch.js"></script>
 </head>
 
 <body>
@@ -14,12 +14,12 @@
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
       <a class="color button" id="black" href="#panel-canvas" data-color="#000"></a>
-      <a class="color button" id="gray" href="#panel-canvas" data-color="#888"></a>
       <a class="color button" id="red" href="#panel-canvas" data-color="#f00"></a>
       <a class="color button" id="yellow" href="#panel-canvas" data-color="#ff0"></a>
       <a class="color button" id="green" href="#panel-canvas" data-color="#0f0"></a>
       <a class="color button" id="blue" href="#panel-canvas" data-color="#00f"></a>
       <a class="color button" id="brown" href="#panel-canvas" data-color="#842"></a>
+      <a class="color button" id="white" href="#panel-canvas" data-color="#fff"></a>
     </div>
 
     <div id="panel-view">
