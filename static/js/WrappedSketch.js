@@ -30,7 +30,7 @@ WrappedSketch.prototype.cancel = function() {
     var prevID = $.url().param("prevID");
     var urlID = $.url().param("comID");
     if (prevID) {
-        window.location.href = '/read/' + prevID
+        window.location = '/read/' + prevID
     } else {
         var data = {
             comID: comID
@@ -40,7 +40,7 @@ WrappedSketch.prototype.cancel = function() {
             url: '/',
             data: data
         });
-        window.location.href = '/';
+        window.location = '/';
     }
 }
 
@@ -50,6 +50,13 @@ WrappedSketch.prototype.sendPanelData = function() {
     var prevID = url.slice(url.lastIndexOf('/') + 1);
     var img = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
     var whatsHappening = this.$desc[0].value;
+
+    // Require description to be non-empty.
+    if (!whatsHappening) {
+        alert("Entery a description!");
+        return;
+    }
+
     var data = {
         img: img,
         whatsHappening: whatsHappening
@@ -58,8 +65,8 @@ WrappedSketch.prototype.sendPanelData = function() {
         type: 'POST',
         url: '/edit/' + prevID,
         data: data
-    }).done(function(id) {
+    }).done(function(panelID) {
         // Redirect to the page which holds the newly created panel.
-        window.location.href = '/read/' + id;
+        window.location = '/read/' + panelID;
     });
 }
