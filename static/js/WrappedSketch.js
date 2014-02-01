@@ -9,7 +9,7 @@
 function WrappedSketch(canvas, desc) {
     this.$canvas = $("#" + canvas);
     this.$desc = $("#" + desc);
-    $canvas.sketch();
+    this.$canvas.sketch();
 }
 
 // This will be prepended to ids to get the path to POST to.
@@ -23,14 +23,14 @@ WrappedSketch.prototype.sendPanelData = function(onSuccess, onFailure) {
     var url = document.URL;
     var prevId = url.slice(url.lastIndexOf('/') + 1);
     var image = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
-    var whatsHappening = this.$desc.value();
+    var whatsHappening = this.$desc[0].value;
     var data = {
         image: image,
         whatsHappening: whatsHappening
     };
     $.ajax({
         type: 'POST',
-        url: WrappedSketch.newPanelPathPrefix + prevId
+        url: WrappedSketch.newPanelPathPrefix + prevId,
         data: data
     }).done(onSuccess).fail(onFailure);
 }
