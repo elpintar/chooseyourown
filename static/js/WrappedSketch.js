@@ -12,14 +12,11 @@ function WrappedSketch(canvas, desc) {
     this.$canvas.sketch();
 }
 
-// This will be prepended to ids to get the path to POST to.
-WrappedSketch.newPanelPathPrefix = '/edit/';
-
 // The type of the image to convert the sketch to.
 WrappedSketch.mimeType = 'image/png';
 
 /* Sends a data URL based on a snapshot of this WrappedSketch to the server. */
-WrappedSketch.prototype.sendPanelData = function(onSuccess, onFailure) {
+WrappedSketch.prototype.sendPanelData = function() {
     var url = document.URL;
     var prevId = url.slice(url.lastIndexOf('/') + 1);
     var image = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
@@ -30,7 +27,9 @@ WrappedSketch.prototype.sendPanelData = function(onSuccess, onFailure) {
     };
     $.ajax({
         type: 'POST',
-        url: WrappedSketch.newPanelPathPrefix + prevId,
+        url: "/edit/" + prevId,
         data: data
-    }).done(onSuccess).fail(onFailure);
+    }).done(function(id) {
+        window.location.href = "/read/" + id;
+    });
 }
