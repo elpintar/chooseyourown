@@ -98,4 +98,18 @@ body div {
     $outside-radius;
 }
 
+#prev {
+  margin-top: ($view-height/2) - ($button-width/2);
+}
+
+#new {
+  margin-top: $outside-radius;
+}
+
+#next {
+  margin-top: $view-height/2 - $outside-radius - (3/2)*$button-width;
+}
+
+
+
 
