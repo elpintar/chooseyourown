@@ -15,15 +15,11 @@
 
     <div id="panel-view">
       <div id="question-wrapper">
-        <div>What happens next?</div>
+        <div>{{questionText}}</div>
       </div>
       <div id="choices-wrapper">
-        <a class="choice">Tsunami</a>
-        <a class="choice">Tornado</a>
-        <a class="choice">Landslide</a>
-        <a class="choice">Earthquake</a>
-        <a class="choice">Avalanche</a>
-        <a class="choice" id="somethingElse">or something else...</a>
+	{{choiceList}}
+        <a class="choice" id="somethingElse">{{newComicText}}</a>
       </div>
     </div>
 
