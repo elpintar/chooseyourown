@@ -64,7 +64,7 @@ class DataBase(object):
 									   "nextIDs" : [],
 									   "img" : img })
 		# update prev to point to new
-		self.updateNextIDs(prevID, newID)
+		self._updateNextIDs(prevID, newID)
 		return newID
 
 	#==============================================
