@@ -79,12 +79,12 @@ def postEdit():
     # Adds a new panel to the database and returns its ID.
     prevID = request.params.get('prevID')
     comID = request.params.get('comID')
-    whatsHappening = request.params.get('whatsHappening')
+    whatIsHappening = request.params.get('whatIsHappening')
     img = request.params.get('img')
     if prevID != None:
-        newID = db.newPanel(prevID, whatsHappening, img)
+        newID = db.newPanel(prevID, whatIsHappening, img)
     else:
-        newID = db.newFirstPanel(comID, whatsHappening, img)
+        newID = db.newFirstPanel(comID, whatIsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
     return str(newID)
 
@@ -96,7 +96,7 @@ def postEdit():
 def displayPanel():
     # Returns the display screen for the given panel
     try:
-        panelId = request.query.panelID
+        panelID = request.query.panelID
     except:
         return displayMenu()
     else:
@@ -124,13 +124,12 @@ def displayNext():
     except:
         return displayMenu()
     else:
-        pan = db.getPanel(panelID)
+        pan = db.getPanelByID(panelID)
         par = pan['prevID']
         all_children = pan['nextIDs']
-        child = [(str(ch_id), db.getPanel(ch_id)['whatsHappening']) 
-                 for ch_id in all_children]
-        return template('choose_template', panelID=panelID, children=children,
-                        questText=questionText, newComicText=newComicText)
+        children = [(str(ch_id), db.getPanelByID(ch_id)['whatIsHappening']) 
+                    for ch_id in all_children]
+        return template('choose_template', panelID=panelID, children=children)
 
 #=============================================
 # Static files

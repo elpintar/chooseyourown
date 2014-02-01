@@ -29,7 +29,7 @@
     % elif numChildren == 1:
       <a class="button" id="next" href="/read?panelID={{nextID}}"></a>
     % else:
-      <a class="button" id="next" href="/choose?prevID={{panelID}}"></a>
+      <a class="button" id="next" href="/choose?panelID={{panelID}}"></a>
     % end
 
     </div>
