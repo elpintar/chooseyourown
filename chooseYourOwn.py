@@ -3,10 +3,10 @@
 
 import os
 import random
-from DataBase import DataBase
+#from DataBase import DataBase
 from bottle import route, run, template, post, get, static_file, request, response
 
-db = DataBase()
+#db = DataBase()
 
 def comBut(situation, panelID):
 	# Return the button containing described with text, situation,
@@ -36,7 +36,8 @@ def display_edit(panel):
 	whatsHappening = request.params['whatsHappening']
 	img = request.params['img']
 	newID = db.newPanel(prevID, whatsHappening, img)
-	return newID # TODO: does return work here? or do we have to do something with response?
+	response.headers['Context-Type'] = 'text/plain'
+	return newID
 
 @route("/read/<panel>")
 def displayPanel(panel):
