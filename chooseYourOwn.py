@@ -104,14 +104,13 @@ def displayPanel():
         img = pan['img']
         prevID = pan.get('prevID','')
         children = pan['nextIDs']
-        if len(children) == 0:
-            nextLink = '/edit?prevID=' + panel
-        elif len(children) == 1:
-            nextLink = '/read?panelID=' + str(children[0])
+        numChildren = len(children)
+        if numChildren > 0:
+            nextID = str(children[0])
         else:
-            nextLink = '/choose?prevID=' + panel
-        return template('read_template', nextLink=nextLink, prevID=prevID,
-                        img=img)
+            nextID = ''
+        return template('read_template', nextID=nextID, prevID=prevID,
+                        numChildren=numChildren, img=img)
 
 #=============================================
 # Choose next panel /choose
@@ -128,24 +127,10 @@ def displayNext():
         pan = db.getPanel(panelID)
         par = pan['prevID']
         all_children = pan['nextIDs']
-        child = [db.getPanel(ch_id) for ch_id in child_ids]
-        comicID = ''
-        comList = ''
-        newComicButton = ('<a class="choice" href=\"' +
-                         '/edit?prevID=' + panelID + 
-                         '&comID' + comicID + '\">')
-        for ch in child:
-            comList = comList + comBut(ch['situation'], ch['startingPanelID'])
-        if len(child) == 0:
-            questionText = 'The End'
-            newComicButton += 'Continue?'
-        else:
-            questionText = 'What happens next?'
-            newComicButton += 'Or something else...'
-        newComicButton += '</a>'
-        return template('choose_template', panel=panelID, parent=par,
-                        comicList=comList, questText=questionText,
-                        newComicText=newComicText)
+        child = [(ch_id,db.getPanel(ch_id)['whatsHappening']
+                 for ch_id in child_ids]
+        return template('choose_template', panelID=panelID, children=children,
+                        questText=questionText, newComicText=newComicText)
 
 #=============================================
 # Static files
