@@ -20,7 +20,7 @@
       </div>
       <div id="choices-wrapper">
 	{{choiceList}}
-        <a class="choice" id="somethingElse">{{newComicText}}</a>
+	{{newComicButton}}
       </div>
     </div>
 

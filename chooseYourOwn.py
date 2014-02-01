@@ -3,16 +3,17 @@
 
 import os
 import random
+from urllib import quote
 from DataBase import DataBase
 from bottle import route, run, template, post, get, static_file, request, response
 
 db = DataBase()
 
-def comBut(situation, panelID):
+def comBut(situation, panelID, comicName):
 	# Return the button containing described with text, situation,
 	# and links to /read/panelID
-	return ('<a class="choice" href=\"/read/' + panelID + '\">' + 
-		situation + '</a>' + '\n')
+	return ('<a class="choice" href=\"' + comicName + '/read/?panelID=' +
+		panelID + '\">' + situation + '</a>' + '\n')
 
 @route("/")
 def displayMenu():
@@ -20,22 +21,38 @@ def displayMenu():
 	comics = db.getAllComics()
 	comList = ''
 	for cm in comics:
-		comList = strng + comBut(cm['situation'],
+		comicName = quote(cm['situation'].replace(' ', '-'))
+		comList = strng + comBut(cm['situation'], cm['situation'],
 					 cm['startingPanelID'])
 	return template('menu_template', comicList = comList)
 
-@route("/edit/<comic>/<panel>")
-def displayEdit(panel):
+@post("/")
+def createComic():
+	situation = request.params['situation']
+	return db.newComic(situation)
+
+@delete("/")
+def deleteComic():
+	comID = request.params['comID']
+	return db.deleteComic(comID)
+
+@route("/<comic>/edit")
+def displayEdit(comic):
 	# Returns the edit page
+	panel = request.query.panelID
 	return template('edit_template', panel=panel)
 
-@post("/edit/<comic>/<panel>")
-def display_edit(panel):
+@post("/<comic>/edit")
+def display_edit(comic):
 	# Adds a new panel to the database and returns its ID.
 	prevID = request.params['prevID']
+	comID = request.params['comID']
 	whatsHappening = request.params['whatsHappening']
 	img = request.params['img']
-	newID = db.newPanel(prevID, whatsHappening, img)
+	if prevID != '':
+		newID = newPanel(prevID, whatsHappening, img)
+	else:
+		newID = db.newFirstPanel(comID, whatsHappening, img)
 	response.headers['Context-Type'] = 'text/plain'
 	return newID
 
@@ -48,32 +65,37 @@ def displayPanel(comic):
 	par = pan['prevID']
 	children = pan['nextIDs']
 	if len(children) == 0:
-		nextLink = '/' + comic + '/edit/' + panel
+		nextLink = '/' + comic + '/edit?prevID=' + panel
 	elif len(children) == 1:
-		nextLink = '/' + comic + '/read/' + children[0]
+		nextLink = '/' + comic + '/read?panelID=' + children[0]
 	else:
-		nextLink = '/' + comic + '/choose/' + panel
+		nextLink = '/' + comic + '/choose?prevID=' + panel
 	return template('read_template', nextLink=nextLink, parent=par, img=img)
 
-@route("/choose/<comic>/<panel>")
-def displayNext(panel):
+@route("/<comic>/choose")
+def displayNext(comic):
 	# Returns the next-panel decision screen
 	panel = request.query.panelID
 	pan = db.getPanel(panel)
 	par = pan['prevID']
 	all_children = pan['nextIDs']
 	child = [db.getPanel(ch_id) for ch_id in child_ids]
+	comicID = ''
 	comList = ''
+	newComicButton = ('<a class="choice" href=\"' + comicName +
+			  '/edit?prevID=' + panelID + 
+			  '&comicID' + comicID + '\">')
 	for ch in child:
 		comList = strng + comBut(ch['situation'],
 					 ch['startingPanelID'])
 		comList = strgn + '\n'
 	if len(child) == 0:
 		questionText = 'The End'
-		newComicText = 'Continue?'
+		newComicButton += 'Continue?'
 	else:
 		questionText = 'What happens next?'
-		newComicText = 'Or something else...'
+		newComicButton += 'Or something else...'
+	newComicButton += '</a>'
 	
 	return template('choose_template', panel=panel, parent=par,
 			comicList=comList, questText=questionText,
