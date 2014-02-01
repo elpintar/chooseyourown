@@ -23,7 +23,7 @@
       </div>
       <div id="choices-wrapper">
         % for (chID,text) in children:
-        <a class="choice" href="/read/?panelID={{chID}}">{{text}}</a>
+        <a class="choice" href="/read?panelID={{chID}}">{{text}}</a>
         % end
         % if len(children) == 0:
         <a class="choice" href="/edit?prevID={{panelID}}">
