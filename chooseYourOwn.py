@@ -14,7 +14,7 @@ def comBut(situation, panelID):
 	return '<a href=\"/read/' + panelID + '\">' + situation + '</a>'
 
 @route("/")
-def hello_world():
+def displayMenu():
 	# The menu page, displays the list of comics
 	comics = db.getAllComics()
 	comList = ''
@@ -25,7 +25,7 @@ def hello_world():
 	return template('menu_template', comicList = comList)
 
 @route("/edit/<panel>")
-def display_edit(panel):
+def displayEdit(panel):
 	# Returns the edit page
 	return template('edit_template', panel=panel)
 
@@ -39,19 +39,26 @@ def display_edit(panel):
 	return newID # TODO: does return work here? or do we have to do something with response?
 
 @route("/read/<panel>")
-def display_panel(panel):
+def displayPanel(panel):
 	# Returns the display screen for the given panel
 	pan = db.getPanel(panel)
 	img = pan['img']
-	par = pan['prev_id']
-	return template('read_template', panel=panel, parent=par, img=img)
+	par = pan['prevID']
+	children = pan['nextIDs']
+	if len(children) == 0:
+		nextLink = '/edit/' + panel
+	elif len(pan['nextIDs']) < 3:
+		nextLink = '/read/' + random.choice(pan['nextIDs'])
+	else:
+		nextLink = '/choose/' + panel
+	return template('read_template', nextLink=nextLink, parent=par, img=img)
 
 @route("/choose/<panel>")
-def display_next(panel):
+def displayNext(panel):
 	# Returns the next-panel decision screen
 	pan = db.getPanel(panel)
-	par = pan['prev_id']
-	all_children = pan['next_ids']
+	par = pan['prevID']
+	all_children = pan['nextIDs']
 	child_ids = random.sample(all_children, 3)
 	child = [db.getPanel(ch_id) for ch_id in child_ids]
 	desc = [ch['text'] for ch in child]
@@ -60,6 +67,8 @@ def display_next(panel):
 			desc0=desc[0], desc1=desc[1], desc2=desc2[2])
 			
 
+# What follows is copied from the Internet.
+# Thank you Internet.
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
 	return static_file(filename, root='static/js')

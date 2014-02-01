@@ -19,7 +19,7 @@
 
     <div id="right-sidebar" class="sidebar">
       <a class="button" id="new"></a>
-      <a class="button" id="next" href="/choose/{{panel}}"></a>
+      <a class="button" id="next" href="{{nextLink}}"></a>
     </div>
   </div>
 
