@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script src="jquery-2.0.2.min.js"></script>
+        <script src="sketch.js"></script>
+        <script src="WrappedSketch.js"></script>
+        <script>
+            var ws;
+
+            window.onload = function() {
+                ws = new WrappedSketch("canvas", "desc");
+            };
+
+            function sendData() {
+                ws.sendPanelData(
+                    function() {},
+                    function() {console.log("failed...")}
+                );
+            }
+        </script>
+    </head>
+    <body>
+        <input id="desc" type="text" />
+        <button onclick="sendData()">Press me!</button>
+        <canvas id="canvas" width="500" height="500" />
+    </body>
+</html>
