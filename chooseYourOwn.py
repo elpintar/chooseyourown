@@ -96,11 +96,11 @@ def postEdit():
 def displayPanel():
     # Returns the display screen for the given panel
     try:
-        panel = request.query.panelID
+        panelId = request.query.panelID
     except:
         return displayMenu()
     else:
-        pan = db.getPanelByID(panel)
+        pan = db.getPanelByID(panelID)
         img = pan['img']
         prevID = pan.get('prevID','')
         children = pan['nextIDs']
@@ -109,8 +109,8 @@ def displayPanel():
             nextID = str(children[0])
         else:
             nextID = ''
-        return template('read_template', nextID=nextID, prevID=prevID,
-                        numChildren=numChildren, img=img)
+        return template('read_template', panelID=panelID, nextID=nextID, 
+                        prevID=prevID, numChildren=numChildren, img=img)
 
 #=============================================
 # Choose next panel /choose
@@ -127,7 +127,7 @@ def displayNext():
         pan = db.getPanel(panelID)
         par = pan['prevID']
         all_children = pan['nextIDs']
-        child = [(str(ch_id), db.getPanel(ch_id)['whatsHappening']
+        child = [(str(ch_id), db.getPanel(ch_id)['whatsHappening']) 
                  for ch_id in all_children]
         return template('choose_template', panelID=panelID, children=children,
                         questText=questionText, newComicText=newComicText)
