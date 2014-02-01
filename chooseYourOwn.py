@@ -5,9 +5,12 @@ import os
 import random
 from bottle import route, run, template
 
+print MONGOHQ_URL
+
 @route("/")
 def hello_world():
 	# The menue page, displays the list of comics
+	return template("Hello World!")
 
 @route("/edit/<panel>")
 def display_edit(panel):
