@@ -34,7 +34,11 @@ def display_panel(panel):
 	pan = db.getPanel(panel)
 	img = pan['img']
 	par = pan['prev_id']
-	return template('read_template', panel=panel, parent=par, img=img)
+	if len(pan['nextIDs']) == 1:
+		nextLink = '/read/' + pan['nextIDs'][0]
+	else:
+		nextLink = '/choose/' + panel
+	return template('read_template', nextLink=nextLink, parent=par, img=img)
 
 @route("/choose/<panel>")
 def display_next(panel):
