@@ -1,2 +1,3 @@
 *.pyc
 dataBaseSettings.conf
+mongo/
