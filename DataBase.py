@@ -2,7 +2,7 @@
 # TartanHacks  2014
 # Database interfacing
 
-import json
+import json, os
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
