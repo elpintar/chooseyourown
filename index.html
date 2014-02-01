@@ -1,7 +1,9 @@
-<!doctype <html>
+<!doctype html>
 
 <head>
   <title>Choose Your Own...</title>
+  <script src="static/js/jquery-2.0.2.min.js"></script>
+  <script src="static/js/hover.js"></script>
   <link href="static/reset.css" rel="stylesheet" type="text/css">
   <link href="static/comical.css" rel="stylesheet" type="text/css">
 </head>
@@ -14,12 +16,20 @@
     </div>
 
     <div id="panel-view">
-
+      <div id="question-wrapper">
+        <div>What happens next?</div>
+      </div>
+      <div id="choices-wrapper">
+        <a class="choice">Tsunami</a>
+        <a class="choice">Tornado</a>
+        <a class="choice">Landslide</a>
+        <a class="choice">Earthquake</a>
+        <a class="choice">Avalanche</a>
+        <a class="choice" id="somethingElse">or something else...</a>
+      </div>
     </div>
 
     <div id="right-sidebar" class="sidebar">
-      <a class="button" id="new"></a>
-      <a class="button" id="next"></a>
     </div>
   </div>
 
