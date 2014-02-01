@@ -46,11 +46,9 @@ def comBut(situation, panelID):
 def displayMenu():
     # The menu page, displays the list of comics
     comics = db.getAllComics()
-    comList = ''
-    for cm in comics:
-        comicName = quote(cm['situation'].replace(' ', '-'))
-        comList += comBut(cm['situation'], cm['startingPanelID'])
-    return template('menu_template', comicList = comList)
+    comicList = [(str(cm['startingPanelID']), cm['situation'])
+                 for cm in comics]
+    return template('menu_template', comicList=comicList)
 
 @post("/")
 def createComic():
@@ -104,13 +102,15 @@ def displayPanel():
         img = pan['img']
         prevID = pan.get('prevID','')
         children = pan['nextIDs']
+        whatIsHappening = pan['whatIsHappening']
         numChildren = len(children)
         if numChildren > 0:
             nextID = str(children[0])
         else:
             nextID = ''
         return template('read_template', panelID=panelID, nextID=nextID, 
-                        prevID=prevID, numChildren=numChildren, img=img)
+                        prevID=prevID, numChildren=numChildren, img=img,
+                        whatIsHappening=whatIsHappening)
 
 #=============================================
 # Choose next panel /choose
