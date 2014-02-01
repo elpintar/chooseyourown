@@ -122,8 +122,12 @@ def displayNext():
         com = db.getComicByID(comID)
         storyStart = com.get('startingPanelID','')
         all_children = pan['nextIDs']
-        children = [(str(ch_id), db.getPanelByID(ch_id)['whatIsHappening']) 
-                    for ch_id in all_children]
+        
+        children = []
+        for ch_id in all_children:
+            cPanel = db.getPanelByID(ch_id)
+            if cPanel != None:
+                children.append( (str(ch_id), cPanel['whatIsHappening'] ) )
         return template('choose_template', panelID=panelID, children=children, storyStart=storyStart)
 
 #=============================================
