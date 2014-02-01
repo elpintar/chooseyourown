@@ -7,6 +7,9 @@ body {
   width: 100%;
   height: 100%;
   font-size: 16px;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  text-shadow: 0px 1px #ddd;
+  color: #333333;
   text-align: center; }
 
 body div {
@@ -17,7 +20,8 @@ body div {
   background-color: red;
   width: 600px;
   height: 400px;
-  margin: 100px 0; }
+  margin: 100px 0;
+  box-shadow: 0px 0px 25px black; }
 
 #viewer div {
   float: left; }
@@ -69,3 +73,46 @@ body div {
 
 #next {
   margin-top: 114px; }
+
+/* chooser page */
+div#question-wrapper {
+  width: 80%;
+  height: 15%;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: -webkit-baseline-middle;
+  float: none;
+  background-color: #18ccae;
+  border: #14ac93 5px solid;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px; }
+  div#question-wrapper div {
+    float: none; }
+
+#choices-wrapper {
+  height: 300px;
+  width: 432px;
+  margin: 20px 24px;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  border: gray 1px solid;
+  border-radius: 14px; }
+
+/* from http://cssarrowplease.com/ */
+.choice {
+  width: 336px;
+  height: 48px;
+  margin: 14px 0px;
+  font-size: 2em;
+  display: inline-block;
+  position: relative;
+  background: #ff8a05;
+  border: 4px solid #cc6521;
+  border-radius: 8px; }
+  .choice:hover {
+    background: #cc6521;
+    border: 4px solid #ff8a05;
+    border-left-color: #cc6521;
+    cursor: pointer;
+    text-shadow: 0px -1px #ddd; }

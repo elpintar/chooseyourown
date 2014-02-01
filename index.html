@@ -1,9 +1,9 @@
-<!doctype <html>
+<!doctype html>
 
 <head>
   <title>Choose Your Own...</title>
-  <link href="static/reset.css" rel="stylesheet" type="text/css">
-  <link href="static/comical.css" rel="stylesheet" type="text/css">
+  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -14,12 +14,20 @@
     </div>
 
     <div id="panel-view">
-
+      <div id="question-wrapper">
+        <div>Choose Your Own...</div>
+      </div>
+      <div id="choices-wrapper">
+        <a class="choice">Tsunami</a>
+        <a class="choice">Tornado</a>
+        <a class="choice">Landslide</a>
+        <a class="choice">Earthquake</a>
+        <a class="choice">Avalanche</a>
+        <a class="choice" id="somethingElse">or something else...</a>
+      </div>
     </div>
 
     <div id="right-sidebar" class="sidebar">
-      <a class="button" id="new"></a>
-      <a class="button" id="next"></a>
     </div>
   </div>
 
