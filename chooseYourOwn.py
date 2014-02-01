@@ -13,7 +13,7 @@ def comBut(situation, panelID):
 	return '<a href=\"/read/' + panelID + '\">' + situation + '</a>'
 
 @route("/")
-def hello_world():
+def displayMenu():
 	# The menu page, displays the list of comics
 	comics = db.getAllComics()
 	comList = ''
@@ -24,12 +24,12 @@ def hello_world():
 	return template('menu_template', comicList = comList
 
 @route("/edit/<panel>")
-def display_edit(panel):
+def displayEdit(panel):
 	# Returns the edit page
 	return template('edit_template', panel=panel)
 
 @route("/read/<panel>")
-def display_panel(panel):
+def displayPanel(panel):
 	# Returns the display screen for the given panel
 	pan = db.getPanel(panel)
 	img = pan['img']
@@ -44,7 +44,7 @@ def display_panel(panel):
 	return template('read_template', nextLink=nextLink, parent=par, img=img)
 
 @route("/choose/<panel>")
-def display_next(panel):
+def displayNext(panel):
 	# Returns the next-panel decision screen
 	pan = db.getPanel(panel)
 	par = pan['prevID']
