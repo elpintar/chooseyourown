@@ -28,7 +28,10 @@
         # end
         % if len(children) == 0:
         <a class="choice" href="/edit?prevID={{panelID}}">
-          Continue?
+          Continue Story?
+        </a>
+        <a class="choice" href="/">
+          Back to Menu
         </a>
         % else:
         <a class="choice" href="/edit?prevID-{{panelID}}">

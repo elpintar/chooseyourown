@@ -1,7 +1,7 @@
 <!doctype html>
 
 <head>
-  <title>Choose Your Own...</title>
+  <title>Navigate Your Own...</title>
   <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
