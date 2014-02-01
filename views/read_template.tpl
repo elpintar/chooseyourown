@@ -1,15 +1,9 @@
 <!doctype html>
 
 <head>
-<<<<<<< HEAD
   <title>Navigate Your Own...</title>
-  <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
-=======
-  <title>Choose Your Own...</title>
-  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
->>>>>>> 0ebf031b92b87a464c148f5cff5a6c360c9e2d2e
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
