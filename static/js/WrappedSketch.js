@@ -47,19 +47,19 @@ WrappedSketch.prototype.cancel = function() {
 /* Sends a data URL based on a snapshot of this WrappedSketch to the server. */
 WrappedSketch.prototype.sendPanelData = function() {
     var img = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
-    var whatsHappening = this.$desc[0].value;
+    var whatIsHappening = this.$desc[0].value;
     var prevID = $.url().param("prevID");
     var comID = $.url().param("comID");
 
     // Require description to be non-empty.
-    if (!whatsHappening) {
+    if (!whatIsHappening) {
         alert("Entery a description!");
         return;
     }
 
     var data = {
         img: img,
-        whatsHappening: whatsHappening,
+        whatIsHappening: whatIsHappening,
         prevID: prevID,
         comID: comID
     };
