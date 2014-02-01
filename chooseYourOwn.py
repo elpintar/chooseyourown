@@ -148,6 +148,7 @@ def images(filename):
 # Serve site
 #=============================================
 
-#run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
-
-run(host='localhost', port=8000)
+if 'RUNNING_HEROKU' in os.environ:
+    run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+else:
+    run(host='localhost', port=8000)

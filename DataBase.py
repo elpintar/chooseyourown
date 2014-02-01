@@ -2,7 +2,7 @@
 # TartanHacks  2014
 # Database interfacing
 
-import json
+import json, os
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 
@@ -19,10 +19,16 @@ class DataBase(object):
         self.firstPanelIDField = "startingPanelID"
 
         # load settings
-        settings = {}
-        execfile("dataBaseSettings.conf", settings)
+        if 'DATABASE_URI' in os.environ:
+            # heroku
+            uri = os.environ['DATABASE_URI']
+        else:
+            # development
+            settings = {}
+            execfile("dataBaseSettings.conf", settings)
+            uri = settings["URI"]
         
-        client = MongoClient( settings["URI"] )
+        client = MongoClient( uri )
         
         # collections
         db = client[dbName]
