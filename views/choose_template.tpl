@@ -2,8 +2,8 @@
 
 <head>
   <title>Choose Your Own...</title>
-  <link href="static/reset.css" rel="stylesheet" type="text/css">
-  <link href="static/comical.css" rel="stylesheet" type="text/css">
+  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -15,15 +15,12 @@
 
     <div id="panel-view">
       <div id="question-wrapper">
-        <div>What happens next?</div>
+        <div>{{questionText}}</div>
+        <div>Choose Your Own...</div>
       </div>
       <div id="choices-wrapper">
-        <a class="choice">Tsunami</a>
-        <a class="choice">Tornado</a>
-        <a class="choice">Landslide</a>
-        <a class="choice">Earthquake</a>
-        <a class="choice">Avalanche</a>
-        <a class="choice" id="somethingElse">or something else...</a>
+	{{choiceList}}
+        <a class="choice" id="somethingElse">{{newComicText}}</a>
       </div>
     </div>
 

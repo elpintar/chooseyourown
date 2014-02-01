@@ -30,6 +30,7 @@ WrappedSketch.prototype.sendPanelData = function() {
         url: "/edit/" + prevID,
         data: data
     }).done(function(id) {
+        // Redirect to the page which holds the newly created panel.
         window.location.href = "/read/" + id;
     });
 }

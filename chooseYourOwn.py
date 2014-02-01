@@ -11,7 +11,8 @@ db = DataBase()
 def comBut(situation, panelID):
 	# Return the button containing described with text, situation,
 	# and links to /read/panelID
-	return '<a href=\"/read/' + panelID + '\">' + situation + '</a>'
+	return ('<a class="choice" href=\"/read/' + panelID + '\">' + 
+		situation + '</a>')
 
 @route("/")
 def displayMenu():
@@ -36,7 +37,8 @@ def display_edit(panel):
 	whatsHappening = request.params['whatsHappening']
 	img = request.params['img']
 	newID = db.newPanel(prevID, whatsHappening, img)
-	return newID # TODO: does return work here? or do we have to do something with response?
+	response.headers['Context-Type'] = 'text/plain'
+	return newID
 
 @route("/read/<panel>")
 def displayPanel(panel):
@@ -47,8 +49,8 @@ def displayPanel(panel):
 	children = pan['nextIDs']
 	if len(children) == 0:
 		nextLink = '/edit/' + panel
-	elif len(pan['nextIDs']) < 3:
-		nextLink = '/read/' + random.choice(pan['nextIDs'])
+	elif len(children) == 1:
+		nextLink = '/read/' + children[0]
 	else:
 		nextLink = '/choose/' + panel
 	return template('read_template', nextLink=nextLink, parent=par, img=img)
@@ -59,12 +61,22 @@ def displayNext(panel):
 	pan = db.getPanel(panel)
 	par = pan['prevID']
 	all_children = pan['nextIDs']
-	child_ids = random.sample(all_children, 3)
 	child = [db.getPanel(ch_id) for ch_id in child_ids]
-	desc = [ch['text'] for ch in child]
+	comList = ''
+	for ch in child:
+		comList = strng + comBut(ch['situation'],
+					 ch['startingPanelID'])
+		comList = strgn + '\n'
+	if len(child) == 0:
+		questionText = 'The End'
+		newComicText = 'Continue?'
+	else:
+		questionText = 'What happens next?'
+		newComicText = 'Or something else...'
+	
 	return template('choose_template', panel=panel, parent=par,
-			child0=child[0], child1=child[1], child2=child[2],
-			desc0=desc[0], desc1=desc[1], desc2=desc2[2])
+			comicList=comList, questText=questionText,
+			newComicText=newComicText)
 			
 
 # What follows is copied from the Internet.
