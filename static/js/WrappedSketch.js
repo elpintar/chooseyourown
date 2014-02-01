@@ -30,7 +30,7 @@ WrappedSketch.prototype.cancel = function() {
     var prevID = $.url().param("prevID");
     var urlID = $.url().param("comID");
     if (prevID) {
-        window.location = '/read/' + prevID
+        window.location = '/read?panelID=' + prevID
     } else {
         var data = {
             comID: comID
