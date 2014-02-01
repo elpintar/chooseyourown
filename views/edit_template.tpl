@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Edit Your Own...</title>
+  <link rel="shortcut icon" href="/static/img/chooseyourown.ico" />
   <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
   <script src="../static/js/jquery-2.0.2.min.js"></script>
@@ -25,7 +26,7 @@
 
     <div id="panel-view">
       <canvas id="panel-canvas" width="480" height="360"> </canvas>
-      <input id="panel-desc" type="text" maxlength="20" 
+      <input id="panel-desc" type="text" maxlength="40" 
        placeholder="Description">
     </div>
 
