@@ -4,6 +4,16 @@
   <title>Choose Your Own...</title>
   <link href="static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="static/css/comical.css" rel="stylesheet" type="text/css">
+  <div id="fb-root"></div>
+
+  <!-- Enable Facebook like button -->
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
 </head>
 
 <body>
@@ -32,6 +42,7 @@
       <a class="button" id="next" href="/choose?prevID={{panelID}}"></a>
     % end
 
+      <div class="fb-share-button" data-href="http://chooseyourown.herokuapp.com/read?panelID={{panelID}}" data-type="button_count"></div>
     </div>
   </div>
 
