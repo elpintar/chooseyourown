@@ -172,12 +172,12 @@ body div {
   margin-top: ($view-height/2) - ($button-width/2);
 }
 
-#new {
+#new, #home {
   margin-top: $outside-radius;
 }
 
-#next {
-  margin-top: $view-height/2 - $outside-radius - (3/2)*$button-width;
+#next, #prev {
+  margin-top: $view-height/2 - $outside-radius - 1.5*$button-width;
 }
 
 /* chooser page */
@@ -433,13 +433,26 @@ $imgFolder: "../img/";
   @include spriteIcon("fork_blue.png", $button-width, $button-width);
   background-size: 90%;
 }
+#home {
+  @include spriteIcon("home.png", $button-width, $button-width);
+  background-size: 90%;
+}
 
 .selected {
   box-shadow: 0px 0px 9px 4px gray;
 }
 
+#start-wrapper .choice,
+#choices-wrapper .choice {
+  text-decoration: none;
+  color: $font-color;
+  height: auto;
+  padding: .3em;
+}
 
-
+#new.button.hidden {
+  width: 0;
+}
 
 
 
