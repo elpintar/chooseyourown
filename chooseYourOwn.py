@@ -29,18 +29,23 @@ def displayMenu():
 @post("/")
 def createComic():
 	situation = request.params['situation']
-	return db.newComic(situation)
+	comicID = db.newComic(situation)
+	response.headers['Context-Type'] = 'text/plain'
+	return comicID
 
 @delete("/")
 def deleteComic():
 	comID = request.params['comID']
-	return db.deleteComic(comID)
+	confirm = db.deleteComic(comID)
+	response.headers['Context-Type'] = 'text/plain'
+	return confirm
 
 @route("/<comic>/edit")
 def displayEdit(comic):
 	# Returns the edit page
-	panel = request.query.panelID
-	return template('edit_template', panel=panel)
+	prevID = request.query.prevID
+	prevLink = "/" + comic + "/read?panelID=" + prevID
+	return template('edit_template', prevLink=prevLink
 
 @post("/<comic>/edit")
 def display_edit(comic):
@@ -70,7 +75,9 @@ def displayPanel(comic):
 		nextLink = '/' + comic + '/read?panelID=' + children[0]
 	else:
 		nextLink = '/' + comic + '/choose?prevID=' + panel
-	return template('read_template', nextLink=nextLink, parent=par, img=img)
+	prevLink = '/' + comic + '/read?panelID=' + par
+	return template('read_template', nextLink=nextLink,
+			prevLink=prevLink, img=img)
 
 @route("/<comic>/choose")
 def displayNext(comic):
@@ -100,7 +107,6 @@ def displayNext(comic):
 	return template('choose_template', panel=panel, parent=par,
 			comicList=comList, questText=questionText,
 			newComicText=newComicText)
-			
 
 # What follows is copied from the Internet.
 # Thank you Internet.
