@@ -127,8 +127,8 @@ def displayNext():
         pan = db.getPanel(panelID)
         par = pan['prevID']
         all_children = pan['nextIDs']
-        child = [(ch_id,db.getPanel(ch_id)['whatsHappening']
-                 for ch_id in child_ids]
+        child = [(str(ch_id), db.getPanel(ch_id)['whatsHappening']
+                 for ch_id in all_children]
         return template('choose_template', panelID=panelID, children=children,
                         questText=questionText, newComicText=newComicText)
 
