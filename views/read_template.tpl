@@ -26,6 +26,7 @@
 
     <div id="panel-view">
     <img src="{{img}}"/>
+    {{whatIsHappening}}
     </div>
 
     <div id="right-sidebar" class="sidebar">

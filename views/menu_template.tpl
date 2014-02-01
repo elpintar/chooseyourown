@@ -29,11 +29,9 @@
       </div>
       
       <div id="start-wrapper">
-        <a class="start">boy looking for revenge...</a>
-        <a class="start">squirrel and a unicorn...</a>
-        <a class="start">asteroid hurtling toward Earth...</a>
-        <a class="start">dangerous criminal on the loose...</a>
-        <a class="start">boy and his tiger...</a>
+        % for (panelID,sit) in comicList:
+        <a class="choice" href="/read?panelID={{panelID}}">{{sit}}</a>
+        % end
       </div>
 
     </div>
