@@ -33,9 +33,12 @@ def display_panel(panel):
 	# Returns the display screen for the given panel
 	pan = db.getPanel(panel)
 	img = pan['img']
-	par = pan['prev_id']
-	if len(pan['nextIDs']) == 1:
-		nextLink = '/read/' + pan['nextIDs'][0]
+	par = pan['prevID']
+	children = pan['nextIDs']
+	if len(children) == 0:
+		nextLink = '/edit/' + panel
+	elif len(pan['nextIDs']) < 3:
+		nextLink = '/read/' + random.choice(pan['nextIDs'])
 	else:
 		nextLink = '/choose/' + panel
 	return template('read_template', nextLink=nextLink, parent=par, img=img)
@@ -44,8 +47,8 @@ def display_panel(panel):
 def display_next(panel):
 	# Returns the next-panel decision screen
 	pan = db.getPanel(panel)
-	par = pan['prev_id']
-	all_children = pan['next_ids']
+	par = pan['prevID']
+	all_children = pan['nextIDs']
 	child_ids = random.sample(all_children, 3)
 	child = [db.getPanel(ch_id) for ch_id in child_ids]
 	desc = [ch['text'] for ch in child]
