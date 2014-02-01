@@ -450,11 +450,16 @@ $imgFolder: "../img/";
   padding: .3em;
 }
 
-#new.button.hidden {
+#new.button.hidden,
+#home.button.hidden {
   width: 0;
 }
 
-
+.fb-share-button.fb_iframe_widget {
+  position: relative;
+  top: 25%;
+  left: 8%;
+}
 
 
 

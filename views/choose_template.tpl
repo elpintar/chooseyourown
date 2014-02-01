@@ -20,7 +20,11 @@
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
+      % if len(children) != 0:
       <a class="button" id="home" href="/"></a>
+      % else:
+      <a class="button hidden" id="home" href="/"></a>
+      % end
       <a class="button" id="prev" href="/read?panelID={{panelID}}"></a>
     </div>
 
@@ -49,7 +53,7 @@
           Or something else...
         </a>
         % end
-        
+
         % if len(children) == 0:
             <div class="fb-share-button" data-href="http://chooseyourown.herokuapp.com/read?panelID={{panelID}}" data-type="button_count"></div>
         % end
