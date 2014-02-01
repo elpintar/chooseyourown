@@ -65,14 +65,14 @@ class DataBase(object):
 									   "nextIDs" : [],
 									   "img" : img })
 		# update prev to point to new
-		self.updateNextIDs(prevID, newID)
+		self._updateNextIDs(prevID, newID)
 		return newID
 
 	#==============================================
 	# UPDATE Methods
 	#==============================================
 
-	def updateNextIDs(self, frameID, nextFrameID):
+	def _updateNextIDs(self, frameID, nextFrameID):
 		"""Add the nextID to the given frame id,
 			return true if successful, false otherwise"""
 		frameDoc = self.panelsCollection.find_one( {self.idField : ObjectId(frameID)} )
