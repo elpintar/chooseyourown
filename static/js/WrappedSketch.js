@@ -1,3 +1,5 @@
+// TODO: update URLs to new query string format
+
 /*
  * A thin wrapper around sketch.js which allows for text entry and sending over
  * the network.
@@ -15,6 +17,33 @@ function WrappedSketch(canvas, desc) {
 // The type of the image to convert the sketch to.
 WrappedSketch.mimeType = 'image/png';
 
+/* Return to the main menu of the parent panel. */
+WrappedSketch.prototype.cancel = function() {
+    // Give the user a chance to avoid cancelling.
+    if (!confirm("Do ya really wanna leave?")) {
+        return;
+    }
+
+    // If prevID is set in the query string, return to the previous panel.
+    // Otherwise, this was to be the first panel in a comic. Return to the main
+    // menu, and delete that comic.
+    var prevID = $.url().param("prevID");
+    var urlID = $.url().param("comID");
+    if (prevID) {
+        window.location.href = '/read/' + prevID
+    } else {
+        var data = {
+            comID: comID
+        };
+        $.ajax({
+            type: 'DELETE',
+            url: '/',
+            data: data
+        });
+        window.location.href = '/';
+    }
+}
+
 /* Sends a data URL based on a snapshot of this WrappedSketch to the server. */
 WrappedSketch.prototype.sendPanelData = function() {
     var url = document.URL;
@@ -27,10 +56,10 @@ WrappedSketch.prototype.sendPanelData = function() {
     };
     $.ajax({
         type: 'POST',
-        url: "/edit/" + prevID,
+        url: '/edit/' + prevID,
         data: data
     }).done(function(id) {
         // Redirect to the page which holds the newly created panel.
-        window.location.href = "/read/" + id;
+        window.location.href = '/read/' + id;
     });
 }

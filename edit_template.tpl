@@ -5,6 +5,7 @@
   <link href="static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="static/css/comical.css" rel="stylesheet" type="text/css">
   <script src="jquery-2.0.2.min.js"></script>
+  <script src="purl.js"></script>
   <script src="sketch.js"></script>
   <script src="WrappedSketch.js"></script>
 </head>
@@ -33,7 +34,7 @@
       <a class="size button" id="med" href="#panel-canvas" data-size="5"></a>
       <a class="size button" id="big" href="#panel-canvas" data-size="10"></a>
       <a class="size button" id="huge" href="#panel-canvas" data-size="15"></a>
-      <a class="button" id="cancel" href="/read/{{prevId}}"></a> <!-- TODO: is this the right syntax? also, this is sort of redundant with sending prevId in the URL -->
+      <a class="button" id="cancel" onclick="ws.cancel()"></a> <!-- TODO: is this the right syntax? also, this is sort of redundant with sending prevId in the URL -->
       <a class="button" id="submit" onclick="ws.sendPanelData()"></a>
     </div>
   </div>
