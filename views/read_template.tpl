@@ -10,7 +10,9 @@
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
-      <a class="button" id="prev" href="{{prevLink}}"></a>
+    % if prevID != None:
+      <a class="button" id="prev" href="/read?panelID={{prevID}}"></a>
+    % end
     </div>
 
     <div id="panel-view">

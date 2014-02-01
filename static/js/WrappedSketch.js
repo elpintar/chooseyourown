@@ -69,6 +69,31 @@ WrappedSketch.prototype.sendPanelData = function() {
         data: data
     }).done(function(panelID) {
         // Redirect to the page which holds the newly created panel.
-        window.location = '/read/' + panelID;
+        window.location = '/read?panelID=' + panelID;
     });
 }
+
+
+/* make certain boxes selected or not */
+$(document).ready(function(){
+
+    $(".color").click(function(){
+        $(".color.selected").removeClass("selected");
+        $(this).addClass("selected");
+    })
+
+    $(".size").click(function(){
+        $(".size.selected").removeClass("selected");
+        $(this).addClass("selected");
+    })
+
+});
+
+
+
+
+
+
+
+
+

@@ -164,6 +164,10 @@ body div {
     $outside-radius;
 }
 
+#panel-desc {
+  text-align: center;
+}
+
 #prev {
   margin-top: ($view-height/2) - ($button-width/2);
 }
@@ -402,7 +406,7 @@ $imgFolder: "../img/";
 #white {background-color: white;}
 #red {background-color: red;}
 #yellow {background-color: yellow;}
-#green {background-color: green;}
+#green {background-color: lime;}
 #blue {background-color: blue;}
 #brown {background-color: brown;}
 
@@ -430,7 +434,9 @@ $imgFolder: "../img/";
   background-size: 90%;
 }
 
-
+.selected {
+  box-shadow: 0px 0px 9px 4px gray;
+}
 
 
 

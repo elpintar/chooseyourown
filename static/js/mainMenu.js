@@ -19,6 +19,6 @@ function newComic() {
         url: '/',
         data: data
     }).done(function(comID) {
-        window.location = '/edit?comicID=' + comID;
+        window.location = '/edit?comID=' + comID;
     });
 }
