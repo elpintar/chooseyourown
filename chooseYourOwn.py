@@ -69,13 +69,13 @@ def deleteComic():
 #=============================================
 
 @route("/edit")
-def displayEdit(comic):
+def displayEdit():
     # Returns the edit page
     # TODO add logic for first or continuation
     return template('edit_template')
 
 @post("/edit")
-def postEdit(comic):
+def postEdit():
     # Adds a new panel to the database and returns its ID.
     prevID = request.params['prevID']
     comID = request.params['comID']
@@ -93,7 +93,7 @@ def postEdit(comic):
 #=============================================
 
 @route("/read")
-def displayPanel(comic):
+def displayPanel():
     # Returns the display screen for the given panel
     try:
         panel = request.query.panelID
@@ -117,7 +117,7 @@ def displayPanel(comic):
 #=============================================
 
 @route("/choose")
-def displayNext(comic):
+def displayNext():
     # Returns the next-panel decision screen
     try:
         panelID = request.query.panelID
@@ -132,7 +132,7 @@ def displayNext(comic):
         comList = ''
         newComicButton = ('<a class="choice" href=\"' +
                          '/edit?prevID=' + panelID + 
-                         '&comicID' + comicID + '\">')
+                         '&comID' + comicID + '\">')
         for ch in child:
             comList = comList + comBut(ch['situation'], ch['startingPanelID'])
         if len(child) == 0:
