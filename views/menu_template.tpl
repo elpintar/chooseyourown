@@ -2,9 +2,9 @@
 
 <head>
   <title>Choose Your Own...</title>
-  <link href="reset.css" rel="stylesheet" type="text/css">
-  <link href="comical.css" rel="stylesheet" type="text/css">
-  <script src"mainMenu.js"></script>
+  <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
+  <script src="/static/js/mainMenu.js"></script>
 </head>
 
 <body>

@@ -111,7 +111,7 @@ def displayNext(comic):
 def javascripts(filename):
     return static_file(filename, root='static/js')
 
-@get('/static/css/<filename:re:.*\.css>')
+@get('/static/css/<filename:re:.*\.(css|woff|ttf)>')
 def stylsheets(filename):
     return static_file(filename, root='static/css')
 
