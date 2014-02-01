@@ -93,8 +93,8 @@ div#question-wrapper {
   text-align: center;
   vertical-align: -webkit-baseline-middle;
   float: none;
-  background-color: #881921;
-  border: #69131a 5px solid;
+  background-color: #951b24;
+  border: #76151d 5px solid;
   border-top: none;
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px; }
@@ -145,12 +145,12 @@ div#question-wrapper {
   text-align: center;
   vertical-align: -webkit-baseline-middle;
   float: none;
-  background-color: #881921;
+  background-color: #951b24;
   background-repeat: no-repeat;
-  background-image: -moz-linear-gradient(top, #881921, #881921 25%, #c82431);
-  background-image: -webkit-linear-gradient(#881921, #881921 25%, #c82431);
-  background-image: linear-gradient(#881921, #881921 25%, #c82431);
-  border-bottom: #69131a 5px solid;
+  background-image: -moz-linear-gradient(top, #951b24, #951b24 25%, #d52734);
+  background-image: -webkit-linear-gradient(#951b24, #951b24 25%, #d52734);
+  background-image: linear-gradient(#951b24, #951b24 25%, #d52734);
+  border-bottom: #76151d 5px solid;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
   border-bottom-left-radius: 8px;
