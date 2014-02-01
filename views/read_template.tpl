@@ -20,8 +20,18 @@
     </div>
 
     <div id="right-sidebar" class="sidebar">
-      <a class="button" id="new"></a>
-      <a class="button" id="next" href="{{nextLink}}"></a>
+    % if prevID != None:
+      <a class="button" id="new" href="/edit?prevID={{prevID}}"></a>
+    % end
+
+    % if numChildren == 0:
+      <a class="button" id="next" href="/edit?prevID={{panelID}}"></a>
+    % elif numChildren == 1:
+      <a class="button" id="next" href="/read?prevID={{nextID}}"></a>
+    % else:
+      <a class="button" id="next" href="/choose?prevID={{panelID}}"></a>
+    % end
+
     </div>
   </div>
 

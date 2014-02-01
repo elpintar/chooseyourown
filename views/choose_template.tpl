@@ -15,12 +15,26 @@
 
     <div id="panel-view">
       <div id="question-wrapper">
-        <div>{{questionText}}</div>
+        % if len(children) == 0:
+        <div>The End</div>
+        % else:
+        <div>What happens next?</div>
+        % end
         <div>Choose Your Own...</div>
       </div>
       <div id="choices-wrapper">
-	{{choiceList}}
-	{{newComicButton}}
+        % for (chID,text) in children
+        <a class="choice" href="/read/?panelID={{chID}}">{{text}}</a>
+        # end
+        % if len(children) == 0:
+        <a class="choice" href="/edit?prevID={{panelID}}">
+          Continue?
+        </a>
+        % else:
+        <a class="choice" href="/edit?prevID-{{panelID}}">
+          Or something else...
+        </a>
+        % end
       </div>
     </div>
 
