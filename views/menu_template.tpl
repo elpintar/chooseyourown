@@ -24,7 +24,7 @@
         <form>
           <hr>
           <input id="situation-entry" type="text" name="new-situation" 
-           size="30" maxlength="20">
+           size="30" maxlength="40">
           <hr>
         </form>
         <div id="situation-create" class="button" onclick="newComic()">Create</div>

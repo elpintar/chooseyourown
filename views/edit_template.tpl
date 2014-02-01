@@ -26,7 +26,7 @@
 
     <div id="panel-view">
       <canvas id="panel-canvas" width="480" height="360"> </canvas>
-      <input id="panel-desc" type="text" maxlength="20" 
+      <input id="panel-desc" type="text" maxlength="40" 
        placeholder="Description">
     </div>
 
