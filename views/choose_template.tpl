@@ -2,14 +2,9 @@
 
 <head>
   <title>Choose Your Own...</title>
-<<<<<<< HEAD
   <link rel="shortcut icon" href="/static/img/chooseyourown.ico" />
   <link href="../static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="../static/css/comical.css" rel="stylesheet" type="text/css">
-=======
-  <link href="/static/css/reset.css" rel="stylesheet" type="text/css">
-  <link href="/static/css/comical.css" rel="stylesheet" type="text/css">
->>>>>>> 8031e52540a3e71eed1858a07b9ffbc6fc4af4a8
 </head>
 
 <body>
