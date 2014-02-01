@@ -77,12 +77,12 @@ def displayEdit():
 @post("/edit")
 def postEdit():
     # Adds a new panel to the database and returns its ID.
-    prevID = request.params['prevID']
-    comID = request.params['comID']
-    whatsHappening = request.params['whatsHappening']
-    img = request.params['img']
-    if prevID != '':
-        newID = newPanel(prevID, whatsHappening, img)
+    prevID = request.params.get('prevID')
+    comID = request.params.get('comID')
+    whatsHappening = request.params.get('whatsHappening')
+    img = request.params.get('img')
+    if prevID != None:
+        newID = db.newPanel(prevID, whatsHappening, img)
     else:
         newID = db.newFirstPanel(comID, whatsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
@@ -102,15 +102,16 @@ def displayPanel():
     else:
         pan = db.getPanelByID(panel)
         img = pan['img']
-        par = pan['prevID']
+        prevID = pan.get('prevID','')
         children = pan['nextIDs']
         if len(children) == 0:
             nextLink = '/edit?prevID=' + panel
         elif len(children) == 1:
-            nextLink = '/read?panelID=' + children[0]
+            nextLink = '/read?panelID=' + str(children[0])
         else:
             nextLink = '/choose?prevID=' + panel
-        return template('read_template', nextLink=nextLink, parent=par, img=img)
+        return template('read_template', nextLink=nextLink, prevID=prevID,
+                        img=img)
 
 #=============================================
 # Choose next panel /choose

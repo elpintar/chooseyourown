@@ -69,6 +69,6 @@ WrappedSketch.prototype.sendPanelData = function() {
         data: data
     }).done(function(panelID) {
         // Redirect to the page which holds the newly created panel.
-        window.location = '/read/' + panelID;
+        window.location = '/read?panelID=' + panelID;
     });
 }
