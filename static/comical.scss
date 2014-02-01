@@ -1,0 +1,115 @@
+/* SASS for Choose Your Own */
+
+/* design constraints */
+$num-colors: 7;
+$outside-radius: 32px;
+
+/* colors */
+$bg: navy;
+$fg: white;
+$side: gray;
+$color-button: green;
+
+/* sizes */
+$view-width: 600px;
+$view-height: (2/3)*$view-width;
+$vertical-centering-margin: 100px;
+$sidebar-width: .1*$view-width;
+
+$button-width: .6*$sidebar-width;
+$button-side-margin: ($sidebar-width - $button-width) / 2;
+
+@mixin button-top-margin($numButtons){ 
+  margin-top: ($view-height - 2*$outside-radius - 
+    $numButtons*$button-width) / (2*$numButtons);
+  margin-bottom: ($view-height - 2*$outside-radius - 
+    $numButtons*$button-width) / (2*$numButtons);
+}
+
+body {
+  background-color: $bg;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  text-align: center;
+}
+
+body div {
+  display: inline-block;
+}
+
+#viewer {
+  border-radius: $outside-radius;
+  background-color: red;
+  width: $view-width;
+  height: $view-height;
+  margin: $vertical-centering-margin 0;
+}
+
+#viewer div {
+  float: left;
+}
+
+#panel-view {
+  width: .8*$view-width;
+  height: 100%;
+  background-color: $fg;
+}
+
+.sidebar {
+  width: $sidebar-width;
+  height: 100%;
+  background-color: $side;
+}
+
+#left-sidebar {
+  text-align: left;
+  border-bottom-left-radius: 2em;
+  border-top-left-radius: 2em;
+}
+
+#right-sidebar {
+  text-align: right;
+  border-bottom-right-radius: 2em;
+  border-top-right-radius: 2em;
+}
+
+.sidebar a {
+  display: inline-block;
+}
+
+.button {
+  width: $button-width;
+  height: $button-width;
+  margin-left: $button-side-margin;
+  margin-right: $button-side-margin;
+  background-color: $color-button;
+  @include button-top-margin($num-colors);
+}
+
+.button:hover {
+  background-color: lighten($color-button, 10%);
+  cursor: pointer;
+}
+
+#black,#tiny{
+  margin-top: ($view-height - 2*$outside-radius - 
+    $num-colors*$button-width) / (2*$num-colors) +
+    $outside-radius;
+}
+
+#prev {
+  margin-top: ($view-height/2) - ($button-width/2);
+}
+
+#new {
+  margin-top: $outside-radius;
+}
+
+#next {
+  margin-top: $view-height/2 - $outside-radius - (3/2)*$button-width;
+}
+
+
+
+
