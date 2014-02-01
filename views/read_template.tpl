@@ -18,7 +18,7 @@
 
     <div id="panel-view">
     <img src="{{img}}"/>
-    <!-- {{whatIsHappening}} -->
+    {{whatIsHappening}}
     </div>
 
     <div id="right-sidebar" class="sidebar">
