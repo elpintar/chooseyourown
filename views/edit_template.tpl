@@ -33,8 +33,8 @@
       <a class="size button" id="tiny" href="#panel-canvas" data-size="1"></a>
       <a class="size button" id="little" href="#panel-canvas" data-size="3"></a>
       <a class="size button selected" id="med" href="#panel-canvas" data-size="5"></a>
-      <a class="size button" id="big" href="#panel-canvas" data-size="10"></a>
-      <a class="size button" id="huge" href="#panel-canvas" data-size="15"></a>
+      <a class="size button" id="big" href="#panel-canvas" data-size="15"></a>
+      <a class="size button" id="huge" href="#panel-canvas" data-size="50"></a>
       <a class="button" id="cancel" onclick="ws.cancel()"></a> <!-- TODO: is this the right syntax? also, this is sort of redundant with sending prevId in the URL -->
       <a class="button" id="submit" onclick="ws.sendPanelData()"></a>
     </div>
