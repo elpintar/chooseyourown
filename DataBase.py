@@ -73,8 +73,9 @@ class DataBase(object):
 	#==============================================
 
 	def _updateNextIDs(self, frameID, nextFrameID):
-		"""Add the nextID to the given frame id,
-			return true if successful, false otherwise"""
+		"""This is a private method.
+		   Add the nextID to the given frame id,
+		   return true if successful, false otherwise"""
 		frameDoc = self.panelsCollection.find_one( {self.idField : ObjectId(frameID)} )
 		if frameDoc == None:
 			return False
