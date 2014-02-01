@@ -66,13 +66,17 @@ def displayEdit():
 def postEdit():
     # Adds a new panel to the database and returns its ID.
     prevID = request.params.get('prevID')
-    comID = request.params.get('comID', '')
     whatIsHappening = request.params.get('whatIsHappening')
     img = request.params.get('img')
     # if no prevID then this is a first panel
     if prevID != None:
+        # pull comID from the previous panal
+        prev = db.getPanelByID(prevID)
+        comID = prev.get('comID', '')
         newID = db.newPanel(prevID, comID, whatIsHappening, img)
     else:
+        # comID given if creating a new first panel
+        comID = request.params.get('comID')
         newID = db.newFirstPanel(comID, whatIsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
     return str(newID)
