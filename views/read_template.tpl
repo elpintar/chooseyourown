@@ -4,9 +4,11 @@
   <title>Choose Your Own...</title>
   <link href="static/css/reset.css" rel="stylesheet" type="text/css">
   <link href="static/css/comical.css" rel="stylesheet" type="text/css">
-  <div id="fb-root"></div>
+</head>
 
+<body>
   <!-- Enable Facebook like button -->
+  <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
     if (d.getElementById(id)) return;
@@ -14,9 +16,6 @@
     js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
     fjs.parentNode.insertBefore(js, fjs);
   }(document, 'script', 'facebook-jssdk'));</script>
-</head>
-
-<body>
 
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
