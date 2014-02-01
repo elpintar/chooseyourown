@@ -8,6 +8,16 @@
 
 <body>
 
+  <!-- Enable Facebook like button -->
+  <div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
   <div id="viewer">
     <div id="left-sidebar" class="sidebar">
       <a class="button" id="home" href="/"></a>
@@ -33,10 +43,15 @@
         <a class="choice" href="/">
           Back to Menu
         </a>
+
         % else:
         <a class="choice" href="/edit?prevID={{panelID}}">
           Or something else...
         </a>
+        % end
+        
+        % if len(children) == 0:
+            <div class="fb-share-button" data-href="http://chooseyourown.herokuapp.com/read?panelID={{panelID}}" data-type="button_count"></div>
         % end
       </div>
     </div>

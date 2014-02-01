@@ -84,10 +84,10 @@ body div {
 #prev {
   margin-top: 182px; }
 
-#new {
+#new, #home {
   margin-top: 32px; }
 
-#next {
+#next, #prev {
   margin-top: 114px; }
 
 /* chooser page */
@@ -381,11 +381,24 @@ canvas:active {
   background-size: contain;
   background-size: 90%; }
 
+#home {
+  background-image: url("../img/home.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 36px;
+  height: 36px;
+  background-size: contain;
+  background-size: 90%; }
+
 .selected {
   box-shadow: 0px 0px 9px 4px gray; }
 
-#start-wrapper .choice {
+#start-wrapper .choice,
+#choices-wrapper .choice {
   text-decoration: none;
   color: #222222;
   height: auto;
   padding: .3em; }
+
+#new.button.hidden {
+  width: 0; }
