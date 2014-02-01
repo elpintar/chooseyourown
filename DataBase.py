@@ -66,7 +66,7 @@ class DataBase(object):
         return self.comicsCollection.insert( { "situation": situation,
                                        "startingPanelID" : None })
 
-    def newPanel(self, prevID, whatIsHappening, img):
+    def newPanel(self, prevID, comID, whatIsHappening, img):
         """create a new panal given the arguments,
             generates a unique _id. Returns _id and None on error.
             Also updates the prevID to point to the 
@@ -75,6 +75,7 @@ class DataBase(object):
             return None
 
         newID = self.panelsCollection.insert( { "prevID": prevID,
+                                       "comID" : comID,
                                        "whatIsHappening" : whatIsHappening,
                                        "nextIDs" : [],
                                        "img" : img })
@@ -83,21 +84,22 @@ class DataBase(object):
             return newID
         return None
 
-    def newFirstPanel(self, comicID, whatIsHappening, img):
+    def newFirstPanel(self, comID, whatIsHappening, img):
         """create a new panal given the arguments,
             generates a unique _id. Returns _id and None on error.
             Also updates the comic to point to the 
             new panel ID"""
-        if not ObjectId.is_valid(comicID):
+        if not ObjectId.is_valid(comID):
             return None
 
         # prevID is not present as this is first panel in comic
         newID = self.panelsCollection.insert( { "prevID": None,
+                                       "comID" : comID,
                                        "whatIsHappening" : whatIsHappening,
                                        "nextIDs" : [],
                                        "img" : img })
         # update comic to point to newID as the startingPanelID
-        if (self._updateStartingPanelID(comicID, newID) == True):
+        if (self._updateStartingPanelID(comID, newID) == True):
             return newID
         return None # error in updating
 

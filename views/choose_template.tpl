@@ -51,7 +51,7 @@
         % end
         
         % if len(children) == 0:
-            <div class="fb-share-button" data-href="http://chooseyourown.herokuapp.com/read?panelID={{panelID}}" data-type="button_count"></div>
+            <div class="fb-share-button" data-href="http://chooseyourown.herokuapp.com/read?panelID={{storyStart}}" data-type="button_count"></div>
         % end
       </div>
     </div>

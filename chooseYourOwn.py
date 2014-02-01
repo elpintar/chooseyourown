@@ -66,11 +66,12 @@ def displayEdit():
 def postEdit():
     # Adds a new panel to the database and returns its ID.
     prevID = request.params.get('prevID')
-    comID = request.params.get('comID')
+    comID = request.params.get('comID', '')
     whatIsHappening = request.params.get('whatIsHappening')
     img = request.params.get('img')
+    # if no prevID then this is a first panel
     if prevID != None:
-        newID = db.newPanel(prevID, whatIsHappening, img)
+        newID = db.newPanel(prevID, comID, whatIsHappening, img)
     else:
         newID = db.newFirstPanel(comID, whatIsHappening, img)
     response.headers['Context-Type'] = 'text/plain'
@@ -91,7 +92,8 @@ def displayPanel():
         pan = db.getPanelByID(panelID)
         img = pan['img']
         prevID = pan.get('prevID','')
-        children = pan['nextIDs']
+        children = pan.get('nextIDs')
+        comID = pan.get('comID','')
         whatIsHappening = pan['whatIsHappening']
         numChildren = len(children)
         if numChildren > 0:
@@ -100,7 +102,7 @@ def displayPanel():
             nextID = ''
         return template('read_template', panelID=panelID, nextID=nextID, 
                         prevID=prevID, numChildren=numChildren, img=img,
-                        whatIsHappening=whatIsHappening)
+                        whatIsHappening=whatIsHappening, comID=comID)
 
 #=============================================
 # Choose next panel /choose
@@ -116,10 +118,13 @@ def displayNext():
     else:
         pan = db.getPanelByID(panelID)
         par = pan['prevID']
+        comID = pan.get('comID', '')
+        com = db.getComicByID(comID)
+        storyStart = com.get('startingPanelID','')
         all_children = pan['nextIDs']
         children = [(str(ch_id), db.getPanelByID(ch_id)['whatIsHappening']) 
                     for ch_id in all_children]
-        return template('choose_template', panelID=panelID, children=children)
+        return template('choose_template', panelID=panelID, children=children, storyStart=storyStart)
 
 #=============================================
 # Static files
