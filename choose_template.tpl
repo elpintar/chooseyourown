@@ -2,8 +2,8 @@
 
 <head>
   <title>Choose Your Own...</title>
-  <link href="static/reset.css" rel="stylesheet" type="text/css">
-  <link href="static/comical.css" rel="stylesheet" type="text/css">
+  <link href="static/css/reset.css" rel="stylesheet" type="text/css">
+  <link href="static/css/comical.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -16,6 +16,7 @@
     <div id="panel-view">
       <div id="question-wrapper">
         <div>{{questionText}}</div>
+        <div>Choose Your Own...</div>
       </div>
       <div id="choices-wrapper">
 	{{choiceList}}
