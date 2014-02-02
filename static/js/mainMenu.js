@@ -11,14 +11,6 @@ function newComic() {
         return;
     }
 
-    var data = {
-        situation: situation
-    };
-    $.ajax({
-        type: 'POST',
-        url: '/',
-        data: data
-    }).done(function(comID) {
-        window.location = '/edit?comID=' + comID;
-    });
+    // go to edit passing the situation
+    window.location = '/edit?situation=' + encodeURIComponent(situation);
 }

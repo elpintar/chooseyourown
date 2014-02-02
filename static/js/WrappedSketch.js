@@ -26,20 +26,12 @@ WrappedSketch.prototype.cancel = function() {
 
     // If prevID is set in the query string, return to the previous panel.
     // Otherwise, this was to be the first panel in a comic. Return to the main
-    // menu, and delete that comic.
+    // menu.
     var prevID = $.url().param("prevID");
     var urlID = $.url().param("comID");
     if (prevID) {
         window.location = '/read?panelID=' + prevID
     } else {
-        var data = {
-            comID: comID
-        };
-        $.ajax({
-            type: 'DELETE',
-            url: '/',
-            data: data
-        });
         window.location = '/';
     }
 }
@@ -49,7 +41,7 @@ WrappedSketch.prototype.sendPanelData = function() {
     var img = this.$canvas[0].toDataURL(WrappedSketch.mimeType);
     var whatIsHappening = this.$desc[0].value;
     var prevID = $.url().param("prevID");
-    var comID = $.url().param("comID");
+    var situation = decodeURIComponent( $.url().param("situation") );
 
     // Require description to be non-empty.
     if (!whatIsHappening) {
@@ -61,7 +53,7 @@ WrappedSketch.prototype.sendPanelData = function() {
         img: img,
         whatIsHappening: whatIsHappening,
         prevID: prevID,
-        comID: comID
+        situation: situation
     };
     $.ajax({
         type: 'POST',
