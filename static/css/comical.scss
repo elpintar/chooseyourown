@@ -106,7 +106,7 @@ body div {
   border-radius: $outside-radius;
   background-color: $fg;
   width: $view-width;
-  height: $view-height;
+  // height: $view-height;
   margin-top: $vertical-centering-margin;
   margin-bottom: 4*$vertical-centering-margin;
   box-shadow: 0px 0px 25px black;
@@ -343,7 +343,7 @@ hr {
   width: .9*$view-width;
   margin: .05*$view-height .05*$mid-width;
   overflow-x: hidden;
-  overflow-y: scroll;
+  //overflow-y: scroll;
   //border: black 1px solid;
   //border-bottom: none;
   //border-top-left-radius: 14px;
