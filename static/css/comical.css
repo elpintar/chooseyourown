@@ -30,8 +30,8 @@ body div {
 #viewer {
   border-radius: 32px;
   background-color: white;
-  width: 600px;
-  height: 400px;
+  width: 650px;
+  height: 433.33333px;
   margin-top: 100px;
   margin-bottom: 400px;
   box-shadow: 0px 0px 25px black; }
@@ -40,12 +40,12 @@ body div {
   float: left; }
 
 #panel-view {
-  width: 480px;
+  width: 520px;
   height: 100%;
   background-color: white; }
 
 .sidebar {
-  width: 60px;
+  width: 65px;
   height: 100%;
   background-color: #cdb99c; }
 
@@ -63,32 +63,32 @@ body div {
   display: inline-block; }
 
 .button {
-  width: 36px;
-  height: 36px;
-  margin-left: 12px;
-  margin-right: 12px;
+  width: 39px;
+  height: 39px;
+  margin-left: 13px;
+  margin-right: 13px;
   background-color: #f2aa2e;
-  margin-top: 6px;
-  margin-bottom: 6px; }
+  margin-top: 6.88095px;
+  margin-bottom: 6.88095px; }
 
 .button:hover {
   background-color: #f5bd5e;
   cursor: pointer; }
 
 #black, #tiny {
-  margin-top: 38px; }
+  margin-top: 38.88095px; }
 
 #panel-desc {
   text-align: center; }
 
 #prev {
-  margin-top: 182px; }
+  margin-top: 197.16667px; }
 
 #new, #home {
   margin-top: 32px; }
 
 #next, #prev {
-  margin-top: 114px; }
+  margin-top: 126.16667px; }
 
 /* chooser page */
 div#question-wrapper {
@@ -107,15 +107,15 @@ div#question-wrapper {
     float: none; }
 
 #choices-wrapper {
-  height: 300px;
-  width: 432px;
-  margin: 20px 24px;
+  height: 325px;
+  width: 468px;
+  margin: 21.66667px 26px;
   overflow-x: hidden; }
 
 /* from http://cssarrowplease.com/ */
 .choice {
-  width: 336px;
-  height: 48px;
+  width: 364px;
+  height: 52.0px;
   margin: 14px 0px;
   font-size: 1.5em;
   display: inline-block;
@@ -137,13 +137,13 @@ div#question-wrapper {
 /* home page */
 #main-view {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 32px;
   background-color: white;
   text-align: center; }
 
 #title {
-  width: 600px;
+  width: 650px;
   height: 15%;
   font-size: 3em;
   padding-top: .2em;
@@ -232,17 +232,23 @@ hr {
 
 #start-wrapper {
   height: 40%;
-  width: 540px;
-  margin: 20px 24px; }
+  width: 585px;
+  margin: 21.66667px 31.2px;
+  overflow-y: scroll;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: #5dbfda 3px solid; }
   #start-wrapper .start {
     width: auto;
-    max-width: 480px;
+    max-width: 520px;
     padding: .3em .3em;
     margin: 14px 7px;
     font-size: 1.4em;
     display: inline-block;
     position: relative;
-    background: #f8d18e;
+    background: #f5bd5e;
     box-shadow: 0px 1px 5px 2px #f8d18e;
     border-radius: 8px; }
     #start-wrapper .start:hover {
@@ -293,8 +299,8 @@ canvas:active {
   background-image: url("../img/eraser.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-color: white;
   background-size: 80%; }
@@ -303,56 +309,56 @@ canvas:active {
   background-image: url("../img/size1.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #little {
   background-image: url("../img/size2.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #med {
   background-image: url("../img/size3.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #big {
   background-image: url("../img/size4.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #huge {
   background-image: url("../img/size4point5.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #cancel {
   background-image: url("../img/x_red.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain; }
 
 #submit {
   background-image: url("../img/check_green.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-size: 80%; }
 
@@ -360,8 +366,8 @@ canvas:active {
   background-image: url("../img/back.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-size: 80%; }
 
@@ -369,8 +375,8 @@ canvas:active {
   background-image: url("../img/next.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-size: 80%; }
 
@@ -378,8 +384,8 @@ canvas:active {
   background-image: url("../img/fork_blue.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-size: 90%; }
 
@@ -387,8 +393,8 @@ canvas:active {
   background-image: url("../img/home.png");
   background-repeat: no-repeat;
   background-position: center center;
-  width: 36px;
-  height: 36px;
+  width: 39px;
+  height: 39px;
   background-size: contain;
   background-size: 90%; }
 

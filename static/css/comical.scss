@@ -25,7 +25,7 @@ $header-color: lighten(rgb(52,175,208),10%);//darken(#f2583e,15%);
 // $header-color: #18ccae;
 
 /* sizes */
-$view-width: 600px;
+$view-width: 650px;
 $view-height: (2/3)*$view-width;
 $vertical-centering-margin: 100px;
 $sidebar-width: .1*$view-width;
@@ -242,7 +242,7 @@ div#question-wrapper {
 
 #main-view {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: $outside-radius;
   background-color: $fg;
   text-align: center;
@@ -341,10 +341,17 @@ hr {
 #start-wrapper {
   height: 40%;
   width: .9*$view-width;
-  margin: .05*$view-height .05*$mid-width;
+  margin: .05*$view-height .06*$mid-width;
   //overflow-x: hidden;
-  //overflow-y: scroll;
-  //border: black 1px solid;
+  overflow-y: scroll;
+ 
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: $header-color 3px solid;
   //border-bottom: none;
   //border-top-left-radius: 14px;
   //border-top-right-radius: 14px;
@@ -358,7 +365,7 @@ hr {
 
     display: inline-block;
     position: relative;
-    background: $big-button-color;
+    background: $big-button-border;
     box-shadow: 0px 1px 5px 2px $big-button-color;
     // border-left: 4px solid lighten($big-button-color, 10%);
     // border-top: 4px solid lighten($big-button-color, 10%);
