@@ -205,9 +205,9 @@ div#question-wrapper {
   width: .9*$mid-width;
   margin: .05*$view-height .05*$mid-width;
   overflow-x: hidden;
-  overflow-y: scroll;
-  border: $side 1px solid;
-  border-radius: 14px;
+  //overflow-y: scroll;
+  //border: $side 1px solid;
+  //border-radius: 14px;
 }
 
 /* from http://cssarrowplease.com/ */

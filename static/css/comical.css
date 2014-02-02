@@ -110,10 +110,7 @@ div#question-wrapper {
   height: 300px;
   width: 432px;
   margin: 20px 24px;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  border: #cdb99c 1px solid;
-  border-radius: 14px; }
+  overflow-x: hidden; }
 
 /* from http://cssarrowplease.com/ */
 .choice {
