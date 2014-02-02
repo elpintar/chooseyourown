@@ -4,14 +4,12 @@
 '''
 API
 
-GET     /                           - home
-POST    /                           - create comic
-DELETE  /                           - delete comic
-GET     /edit?prevID="__"&comID=""  - panel with prevID 
-GET     /edit?prevID=""&comID="__"  - initial panel for comID
-POST    /edit                       - create panel in database, redirect read
-GET     /read?panelID="__"          - display panel
-GET     /choose?panelID="__"        - display choose window for given panel
+GET     /                            - home
+GET     /edit?situation="__"         - initial panel in new comic wth given situation 
+GET     /edit?prevID="__"&comID="__" - previous panel with comID
+POST    /edit                        - create panel in database, redirect read
+GET     /read?panelID="__"           - display panel
+GET     /choose?panelID="__"         - display choose window for given panel
 ERROR missing query - redirect home
 ''' 
 
@@ -40,18 +38,6 @@ def displayMenu():
                  for cm in comics]
     return template('menu_template', comicList=comicList)
 
-@post("/")
-def createComic():
-    situation = request.params['situation']
-    id = db.newComic(situation)
-    response.headers['Context-Type'] = 'text/plain'
-    return str(id)
-
-@delete("/")
-def deleteComic():
-    comID = request.params['comID']
-    db.deleteComic(comID)
-
 #=============================================
 # Edit /edit
 #=============================================
@@ -59,25 +45,29 @@ def deleteComic():
 @route("/edit")
 def displayEdit():
     # Returns the edit page
-    # TODO add logic for first or continuation
     return template('edit_template')
 
 @post("/edit")
 def postEdit():
-    # Adds a new panel to the database and returns its ID.
-    prevID = request.params.get('prevID')
+    # either create a new comic and panel or create a continuation panel
+    prevID          = request.params.get('prevID')
     whatIsHappening = request.params.get('whatIsHappening')
-    img = request.params.get('img')
-    # if no prevID then this is a first panel
-    if prevID != None:
+    img             = request.params.get('img')
+    situation       = request.params.get('situation')
+
+    if prevID == None:
+        # if no prevID then this is a first panel
+        # create new comic and panel
+        comID = db.newComic(situation)
+        newID = db.newFirstPanel(comID, whatIsHappening, img)
+    
+    else:
         # pull comID from the previous panal
         prev = db.getPanelByID(prevID)
         comID = prev.get('comID', '')
         newID = db.newPanel(prevID, comID, whatIsHappening, img)
-    else:
-        # comID given if creating a new first panel
-        comID = request.params.get('comID')
-        newID = db.newFirstPanel(comID, whatIsHappening, img)
+
+    # return id of panel
     response.headers['Context-Type'] = 'text/plain'
     return str(newID)
 
@@ -94,7 +84,7 @@ def displayPanel():
         return displayMenu()
     else:
         pan = db.getPanelByID(panelID)
-        img = pan['img']
+        img = pan.get('img', '')
         prevID = pan.get('prevID','')
         children = pan.get('nextIDs')
         comID = pan.get('comID','')
