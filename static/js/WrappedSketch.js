@@ -19,10 +19,6 @@ WrappedSketch.mimeType = 'image/png';
 
 /* Return to the main menu of the parent panel. */
 WrappedSketch.prototype.cancel = function() {
-    // Give the user a chance to avoid cancelling.
-    if (!confirm("Do ya really wanna leave?")) {
-        return;
-    }
 
     // If prevID is set in the query string, return to the previous panel.
     // Otherwise, this was to be the first panel in a comic. Return to the main
